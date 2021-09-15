@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /amplify
+package-lock.json
 # environment files
 .env
 
@@ -12,7 +13,7 @@
 /coverage
 
 # production
-#/build
+/build
 
 # misc
 .DS_Store
@@ -33,7 +34,7 @@ amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
 amplify/backend/.temp
-# build/
+build/
 dist/
 node_modules/
 aws-exports.js

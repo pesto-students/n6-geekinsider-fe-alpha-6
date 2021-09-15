@@ -6,7 +6,7 @@ const About: React.FC<AboutPropTypes> = ({ children, title }) => {
     return (
         <>
             <h3><b>{title}</b></h3>
-            {children?.split('\n').map((itm: string) => <span key={itm}>{itm}<br/></span>)}
+            {children?.split(/[\n]+/).map((itm: string, index: number) => <span key={`${itm}-${index}`}>{itm}<br/></span>)}
         </>
     )
 }

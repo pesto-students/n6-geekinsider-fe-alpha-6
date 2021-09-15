@@ -30,15 +30,21 @@ const SingleWidget: React.FC<any> = (props) => {
             </section>
             <section className="single-widget__footer-section">
                 <div><MdLocationOn style={iconStyles} />{location}</div>
-                {/* <div><MdMonetizationOn style={iconStyles} title={`${ctc} Lacs per annum`}/>{ctc} LPA</div> */}
                 <div><MdHistory style={iconStyles} />{exp} year</div>
             </section>
         </Card>
     )
 }
 
-const ManageAppliedCandidates: React.FC<any> = (props) => {
-    const { appliedCandidates, match, fetchAppliedCandidates, activeJob, fetchAppliedCandidateDetails } = props;
+interface ManageAppliedCandidatesPropTypes {
+    appliedCandidates: any, 
+    match: any, 
+    fetchAppliedCandidates: (e: string) => void, 
+    activeJob: any
+}
+
+const ManageAppliedCandidates: React.FC<ManageAppliedCandidatesPropTypes> = (props) => {
+    const { appliedCandidates, match, fetchAppliedCandidates, activeJob } = props;
     const { jobTitle, jobLocation, ctc } = activeJob;
     const [selected, setSelected] = useState(appliedCandidates[0]);
 
@@ -61,9 +67,6 @@ const ManageAppliedCandidates: React.FC<any> = (props) => {
                 <div><MdLocationOn style={iconStyles} />{jobLocation}</div>
                 <div title={`${ctc} lacs per annum`}><MdMonetizationOn style={iconStyles} />{ctc} LPA</div>
             </div>
-            {/* <Button type="primary" href={getWhatsAppUrl(whatsappNumber, name)} target="_blank">
-                <FaWhatsapp className="whatsapp-icon" />&nbsp;Connect
-            </Button> */}
             {appliedCandidates?.length>0 ? 
                 <Row>
                     <Col span={8} xs={{ span: 12 }} sm={{ span: 10 }} md={{ span: 8 }} lg={{ span: 6 }}>

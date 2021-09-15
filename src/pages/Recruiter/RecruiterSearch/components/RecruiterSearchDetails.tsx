@@ -26,12 +26,15 @@ const RecruiterSearchDetails: React.FC<any> = (props) => {
         __v,
         _id,
         fetchCandidateDetails,
-        gitInfo
+        gitInfo,
+        searchType
     } = props;
 
     useEffect(() => {
-        fetchCandidateDetails(aboutid);
-    }, [])
+        if (!gitInfo) {
+            fetchCandidateDetails(aboutid)
+        }
+    }, [aboutid, searchType])
 
     return (
         <div className="recruiter-search-details">
@@ -66,7 +69,9 @@ const RecruiterSearchDetails: React.FC<any> = (props) => {
     )
 }
 
-const mapStateToProps = (state: StateTypes) => ({});
+const mapStateToProps = (state: StateTypes) => ({
+    searchType: state.searchType
+});
   
 const mapDispatchToProps = (dispatch: any) => bindActionCreators({
     fetchCandidateDetails

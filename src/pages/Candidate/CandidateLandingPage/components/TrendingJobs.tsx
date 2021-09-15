@@ -26,7 +26,7 @@ const TrendingJobs: React.FC<TrendingJobsPropTypes> = (props) => {
             <h2>Top trending jobs</h2>
             <div className="recommended-job-widget-container">
                 {trendingJobs.length>0 ? 
-                    trendingJobs.map((itm: any) => <JobWidget key={JSON.stringify(itm)} {...{...itm, onClick: handleCardClick}} />)
+                    trendingJobs.map((itm: any) => <JobWidget key={itm.jobslug} {...{...itm, onClick: handleCardClick}} />)
                     :
                     <div className="recommended-job-widget__empty"><Empty/></div>
                 }

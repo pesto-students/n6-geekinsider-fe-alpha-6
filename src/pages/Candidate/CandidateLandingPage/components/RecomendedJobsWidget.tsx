@@ -31,7 +31,7 @@ const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (props) 
             <h2>Recommended jobs for you</h2>
             <div className="recommended-job-widget-container">
                 {recommendedJobs.length>0 ? 
-                    recommendedJobs.map((itm: any) => <JobWidget key={itm} {...{...itm, onClick: handleCardClick}}/>) 
+                    recommendedJobs.map((itm: any) => <JobWidget key={itm.jobslug} {...{...itm, onClick: handleCardClick}}/>) 
                     : 
                     <div className="recommended-job-widget__empty"><Empty/></div>
                 }

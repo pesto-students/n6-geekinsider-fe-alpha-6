@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'antd';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
 
 import { generateGithubUrl, getWhatsAppUrl, iconStyles } from '../../../utils';
+import { StateTypes, fetchAppliedCandidateDetail } from '../../../redux';
 import About from '../../../components/About';
 import SkillSection from '../../../components/SkillSection';
-import './RightWidget.scss'
+import './RightWidget.scss';
 
 const RightWidget: React.FC<any> = (props) => {
+    console.log(props)
     const [mappableSkills, setMappableSkills] = useState<string[]>([]);
-    const { about, name, skills, location, ctc, exp, githubUrl, whatsappNumber, jobTitle, fetchCandidateDetails, gitInfo } = props;
+    const { about, name, skills, location, ctc, exp, githubUrl, whatsappNumber, jobTitle, userId, gitInfo, fetchAppliedCandidateDetail } = props;
 
     useEffect(() => {
         if (skills) setMappableSkills(typeof skills === 'string' ? skills.split(',') : skills);
     }, [skills])
+    
+    useEffect(() => {
+        if (!gitInfo) {
+            fetchAppliedCandidateDetail(userId)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!gitInfo) {
+            fetchAppliedCandidateDetail(userId)
+        }
+    }, [userId])
+
 
     return (
         <div className="manage__applicants">
@@ -49,4 +66,10 @@ const RightWidget: React.FC<any> = (props) => {
     )
 }
 
-export default RightWidget;
+const mapStateToProps = (state: StateTypes) => ({});
+
+const mapDispatchToProps = (dispatch: any) => bindActionCreators({
+    fetchAppliedCandidateDetail
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(RightWidget);

@@ -24,12 +24,14 @@ const JobPostingForm: React.FC<JobPostingFormPropTypes> = (props) => {
 
     const afterSuccessfullFinish = () => {
         form.resetFields();
-        history.push('/recruiter/profile');
+        // history.push('/recruiter/profile');
+        history.goBack();
     }
 
     const handleCancel = () => {
         form.resetFields();
-        history.push('/recruiter/profile');
+        // history.push('/recruiter/profile');
+        history.goBack();
     }
 
 	return (

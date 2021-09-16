@@ -30,7 +30,7 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
       setIsAuth(true);
       setLoginLoading(false);
       history.push("/home");
-    } catch (e) {
+    } catch (e: any) {
       setLoginLoading(false);
       if (e?.code === "UserNotFoundException") {
         notification.error({

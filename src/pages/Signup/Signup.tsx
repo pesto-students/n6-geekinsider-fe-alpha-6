@@ -21,6 +21,7 @@ import "./Signup.scss";
 const { TabPane } = Tabs;
 
 const Signup: React.FC<SignupTypes> = (props) => {
+
   const { userType, setUserType, history, setIsAuth } = props;
   const [activeTab, setActiveTab] = useState<SignupTabsType>("candidate");
   const [loading, setLoading] = useState<boolean>(false);
@@ -36,7 +37,7 @@ const Signup: React.FC<SignupTypes> = (props) => {
       await Auth.signUp({ username: email, password, attributes: { email } });
       setActiveTab("emailVerification");
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       if (error?.code === "UsernameExistsException") {
         notification.error({
@@ -64,7 +65,7 @@ const Signup: React.FC<SignupTypes> = (props) => {
       setIsAuth(true);
       history.push(`/${userType}/onboarding`);
       setLoading(false);
-    } catch (e) {
+    } catch (e: any) {
       if (e?.code === "CodeMismatchException") {
         notification.error({
           message: e?.message,

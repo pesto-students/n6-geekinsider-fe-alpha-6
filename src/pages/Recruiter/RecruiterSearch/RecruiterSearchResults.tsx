@@ -44,7 +44,7 @@ const SearchResults: React.FC<{ data: JobObjectTypes[] }> = (props) => {
     const [selectedData, setSelectedData] = useState({});
 
     useEffect(() => {
-        if (data.length === 0 || Object.keys(selectedData).length === 0) setSelectedData(data[0]);
+        setSelectedData(data[0]);
     }, [data])
     
     return (

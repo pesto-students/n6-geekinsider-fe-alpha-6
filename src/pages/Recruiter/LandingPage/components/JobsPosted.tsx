@@ -3,6 +3,7 @@ import { Button, Empty } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { FaPlus } from 'react-icons/fa';
 
 import JobWidget from '../../../../components/JobWidget';
 import { RecommCandidateWidgetPropTypes } from '..';
@@ -30,7 +31,9 @@ const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (props) 
                         {recentJobs.map((itm: any) => <JobWidget key={JSON.stringify(itm)} {...{...itm, onClick: handleJobCardClick}}/>)}
                     </div>
                     <div className="posted-jobs__footer">
-                        <Button onClick={() => history.push('/recruiter/postjob')} type="primary">Post a Job</Button>
+                        <Button onClick={() => history.push('/recruiter/postjob')} type="primary">
+                            <FaPlus className="icon" />&nbsp;Post a Job
+                        </Button>
                     </div>
                 </>
                 :

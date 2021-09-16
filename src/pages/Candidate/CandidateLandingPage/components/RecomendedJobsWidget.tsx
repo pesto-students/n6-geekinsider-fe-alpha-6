@@ -31,14 +31,14 @@ const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (props) 
             <h2>Recommended jobs for you</h2>
             <div className="recommended-job-widget-container">
                 {recommendedJobs.length>0 ? 
-                    recommendedJobs.map((itm: any) => <JobWidget key={itm.jobslug} {...{...itm, onClick: handleCardClick}}/>) 
+                    recommendedJobs.slice(0, 4).map((itm: any) => <JobWidget key={itm.jobslug} {...{...itm, onClick: handleCardClick}}/>) 
                     : 
                     <div className="recommended-job-widget__empty"><Empty/></div>
                 }
             </div>
-            {recommendedJobs.length>0 && <div className="see-more-container">
+            {recommendedJobs.length>4 ? <div className="see-more-container">
                 <Button onClick={() => history.push('/search?q=recommended')}>See more...</Button>
-            </div>}
+            </div> : <br/>}
         </div>
     )
 }

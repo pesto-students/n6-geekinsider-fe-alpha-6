@@ -52,9 +52,9 @@ const RecommenededCandidatesWidget: React.FC<RecommenededCandidatesWidgetTypes> 
                     <div className="recommended-candidates-widget-container">
                         {recommendedCandidates.slice(0, 3).map((itm: any) => <SingleWidget key={itm} {...{...itm, handleClick}}/>)}
                     </div>
-                    <div className="see-more-container">
+                    {recommendedCandidates.length>3 && <div className="see-more-container">
                         <Button onClick={handleSeeMore}>See more...</Button>
-                    </div>
+                    </div>}
                 </>
                 :
                 <div><Empty /></div>

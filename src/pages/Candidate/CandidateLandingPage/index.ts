@@ -1,2 +1,2 @@
-export { default } from './CandidateLanding';
-export * from './types';
+export { default } from "./CandidateLanding";
+export * from "./types";

@@ -1,1 +1,1 @@
-export { default } from './JobPostDetailWidget';
+export { default } from "./JobPostDetailWidget";

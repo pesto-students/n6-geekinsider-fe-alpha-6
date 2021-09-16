@@ -1,2 +1,2 @@
-export { default } from './Routes';
-export * from './types';
+export { default } from "./Routes";
+export * from "./types";

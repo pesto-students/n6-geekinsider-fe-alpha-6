@@ -1,1 +1,1 @@
-export { default } from './QuickProfileWidget';
+export { default } from "./QuickProfileWidget";

@@ -1,1 +1,1 @@
-export { SingleChatWidget } from './SingleChatWidget';
+export { SingleChatWidget } from "./SingleChatWidget";

@@ -38,6 +38,12 @@ const RecruiterSearchDetails: React.FC<any> = (props) => {
     if (!gitInfo) {
       fetchCandidateDetails(aboutid);
     }
+  }, [])
+
+  useEffect(() => {
+    if (!gitInfo) {
+      fetchCandidateDetails(aboutid);
+    }
   }, [aboutid, searchType]);
 
   return (

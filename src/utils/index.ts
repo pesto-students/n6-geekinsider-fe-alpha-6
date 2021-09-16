@@ -49,3 +49,20 @@ export const getWhatsAppUrl = (whatsappNumber: string, name: string) => {
   )}`;
   return url;
 };
+
+export const unionArray = (firstArray: any, secondArray: any, uniqueKeyName: string) => {
+  const keys: any = {};
+  // accumulating keys as the uniqueKeyName with value as the whole object of the firstArray
+  for (const each of firstArray) {
+    keys[each[uniqueKeyName]] = each;
+  }
+
+  // checking if the second array has the key, if yes then replacing that object present in secondArray with the value of the key in keys object, else returning the object as is.
+  // everything gets accumulated in an array, returning that array
+  return secondArray.map((itm: any) => {
+    if (keys[itm[uniqueKeyName]]) {
+      return keys[itm[uniqueKeyName]];
+    }
+    else return itm;
+  })
+}

@@ -5,6 +5,7 @@ import {
 } from "../pages/Onboarding/types";
 import { UserTypeTypes } from "../routes";
 import makeRequest from "../utils/makeRequest";
+import { unionArray } from '../utils';
 import { DispatchType } from "./types";
 import { SearchType, StateTypes, store } from ".";
 
@@ -145,7 +146,7 @@ export const fetchSkillSearch = (skills: string[]) => {
     makeRequest
       .get(`/api/jobs/job?skills=${skills.join(",")}`)
       .then((data) => {
-        dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: data.jobRecord });
+        dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: unionArray(store.getState().skillSearch, data.jobRecord, 'jobslug') });
         dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch((error) => {
@@ -300,7 +301,7 @@ export const fetchAppliedCandidates = (jobslug: string) => {
         if (data?.enrolledCandidate) {
           dispatch({
             type: "SET_APPLIED_CANDIDATES",
-            payload: data.enrolledCandidate,
+            payload: unionArray(store.getState().appliedCandidates, data.enrolledCandidate, 'userId'),
           });
         } else {
           dispatch({ type: "SET_APPLIED_CANDIDATES", payload: [] });
@@ -379,7 +380,7 @@ export const fetchRecruiterSkillSearch = (skills: string[]) => {
     makeRequest
       .get(`/api/users/search-can?skills=${skills.join(",")}`)
       .then((data) => {
-        dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: data?.user });
+        dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: unionArray(store.getState().skillSearch, data?.user, 'aboutid') });
         dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch((error) => {

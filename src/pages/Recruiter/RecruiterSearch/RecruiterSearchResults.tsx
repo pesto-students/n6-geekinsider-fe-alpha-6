@@ -54,7 +54,7 @@ const SearchResults: React.FC<{ data: JobObjectTypes[] }> = (props) => {
                     <div className="search-result-widget-container">
                         {data?.map((itm: any, index: number) => 
                             <SingleWidget 
-                                key={itm}
+                                key={itm.aboutid}
                                 itm={itm} 
                                 index={index} 
                                 selectedData={selectedData}

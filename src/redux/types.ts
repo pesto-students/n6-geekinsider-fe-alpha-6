@@ -1,6 +1,17 @@
 import { UserTypeTypes } from "../routes";
 
 export type SearchType = 'recommended' | 'trending' | 'companySearch' | 'skillSearch';
+
+export interface CompanySearchType {
+    companyName: string
+    ctc: number
+    exp: number
+    jobDescription: string
+    jobLocation: string
+    jobTitle: string
+    jobslug: string
+    skills: string[]
+}
 export interface StateTypes {
     userType: UserTypeTypes | '',
     isAuth: boolean,

@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /amplify
+package-lock.json
 # environment files
 .env
 
@@ -12,7 +13,7 @@
 /coverage
 
 # production
-#/build
+/build
 
 # misc
 .DS_Store

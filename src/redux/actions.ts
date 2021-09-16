@@ -3,7 +3,7 @@ import { CandidateSubmitTypes, RecruitereSubmitTypes } from '../pages/Onboarding
 import { UserTypeTypes } from '../routes';
 import makeRequest from '../utils/makeRequest';
 import { DispatchType } from './types';
-import { SearchType, store } from '.';
+import { SearchType, StateTypes, store } from '.';
 
 export const setIsAuth = (data: boolean) => {
     return (dispatch: DispatchType) => {
@@ -288,22 +288,45 @@ export const fetchAppliedCandidates = (jobslug: string) => {
     }
 }
 
-export const fetchCandidateDetails = (slugId: string) => {
+export const fetchCandidateDetails = (aboutId: string) => {
     return (dispatch: DispatchType) => {
         dispatch({ type: 'SET_LOADING', payload: true });
-        makeRequest.get(`/api/users/getcan?canid=${slugId}`)
+        makeRequest.get(`/api/users/getcan?canid=${aboutId}`)
             .then(data => {
                 if (data?.user?.about) {
-                    const tempRecommendedCandidates = Object.assign([], store.getState().recommendedCandidates);
-                    tempRecommendedCandidates.map((itm: any) => {
-                        if (itm.aboutid === slugId) {
-                            itm['about'] = data.user.about;
-                            itm['gitInfo'] = data.user.gitInfo;
-                            dispatch({ type: 'SET_RECRUITER_CANDIDATE_DETAILS', payload: itm });
-                        }
-                        return itm;
-                    })
-                    dispatch({ type: 'SET_RECOMMENDED_CANDIDATES', payload: [...tempRecommendedCandidates] });
+                    const tempStore: StateTypes = store.getState();
+                    const type = tempStore.searchType;
+                    let tempObect = [];
+                    switch (type) {
+                        case 'recommended':
+                            tempObect = tempStore.recommendedCandidates.map((itm: any) => {
+                                if (itm?.aboutid === aboutId) {
+                                    itm = { ...itm, ...data.user }
+                                    dispatch({ type: 'SET_RECRUITER_CANDIDATE_DETAILS', payload: itm });
+                                }
+                                return itm;
+                            });
+                            dispatch({ type: 'SET_RECOMMENDED_CANDIDATES', payload: tempObect });
+                            break
+                        case 'skillSearch':
+                            tempObect = tempStore.skillSearch.map((itm: any) => {
+                                if (itm?.aboutid === aboutId) {
+                                    itm = { ...itm, ...data.user }
+                                }
+                                return itm;
+                            });
+                            dispatch({ type: 'SET_SKILL_SEARCH_RESULT', payload: tempObect });
+                            break
+                        default:
+                            tempObect = tempStore.recommendedCandidates.map((itm: any) => {
+                                if (itm?.aboutid === aboutId) {
+                                    itm = { ...itm, ...data.user }
+                                }
+                                return itm;
+                            });
+                            dispatch({ type: 'SET_RECOMMENDED_CANDIDATES', payload: tempObect });
+                            break;
+                    }
                 }
                 dispatch({ type: 'SET_LOADING', payload: false });
             })
@@ -360,4 +383,88 @@ export const clearStates = () => {
     return (dispatch: DispatchType) => {
         dispatch({ type: 'CLEAR_STATE', payload: {} });
     }
+}
+
+export const fetchAppliedCandidateDetail = (userId: string) => {
+    return (dispatch: DispatchType) => {
+        dispatch({ type: 'SET_LOADING', payload: true });
+        makeRequest.get(`/api/users/getcan?canid=${userId}`)
+            .then(data => {
+                const tempAppliedCandidates = store.getState().appliedCandidates.map((itm: any) => {
+                    if (itm?.userId === userId) {
+                        itm = { ...itm, ...data.user };
+                    }
+                    return itm;
+                })
+                dispatch({ type: 'SET_APPLIED_CANDIDATES', payload: tempAppliedCandidates });
+                dispatch({ type: 'SET_LOADING', payload: false });
+            })
+            .catch((error) => {
+                dispatch({ type: 'SET_LOADING', payload: false });
+            });
+            
+    }
+}
+
+export const fetchSearchJobDetail = (jobSlug: string) => {
+    return (dispatch: DispatchType) => {
+        dispatch({ type: 'SET_LOADING', payload: true });
+        makeRequest.get(`/api/jobs/jobdetail?jobid=${jobSlug}`)
+            .then((data: any) => {
+                const tempStore: StateTypes = store.getState();
+                const type = tempStore.searchType;
+                let tempObect = [];
+                switch (type) {
+                    case 'companySearch':
+                        tempObect = tempStore.companySearch.map((itm: any) => {
+                            if (itm?.jobslug === jobSlug) {
+                                itm = { ...itm, ...data.jobRecord }
+                            }
+                            return itm;
+                        });
+                        dispatch({ type: 'SET_COMPANY_SEARCH', payload: tempObect });
+                        break
+                    case 'skillSearch':
+                        tempObect = tempStore.skillSearch.map((itm: any) => {
+                            if (itm?.jobslug === jobSlug) {
+                                itm = { ...itm, ...data.jobRecord }
+                            }
+                            return itm;
+                        });
+                        dispatch({ type: 'SET_SKILL_SEARCH_RESULT', payload: tempObect });
+                        break
+                    case 'recommended':
+                        tempObect = tempStore.recommendedJobs.map((itm: any) => {
+                            if (itm?.jobslug === jobSlug) {
+                                itm = { ...itm, ...data.jobRecord }
+                            }
+                            return itm;
+                        });
+                        dispatch({ type: 'SET_RECOMMENDED_JOBS', payload: tempObect });
+                        break
+                    case 'trending':
+                        tempObect = tempStore.trendingJobs.map((itm: any) => {
+                            if (itm?.jobslug === jobSlug) {
+                                itm = { ...itm, ...data.jobRecord }
+                            }
+                            return itm;
+                        });
+                        dispatch({ type: 'SET_TRENDING_JOBS', payload: tempObect });
+                        break
+                    default:
+                        tempObect = tempStore.recommendedJobs.map((itm: any) => {
+                            if (itm?.jobslug === jobSlug) {
+                                itm = { ...itm, ...data.jobRecord }
+                            }
+                            return itm;
+                        });
+                        dispatch({ type: 'SET_RECOMMENDED_JOBS', payload: tempObect });
+                        break
+                }
+                dispatch({ type: 'SET_LOADING', payload: false });
+            })
+            .catch((error) => {
+                dispatch({ type: 'SET_LOADING', payload: false });
+            });
+        }
 }

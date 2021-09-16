@@ -12,14 +12,12 @@ const Routes = lazy(() => import('./routes'));
  
 const App: React.FC = () => {
   return (
-    <Suspense fallback={<div className="loader--global"><Loader className="loader--global" /></div>}>
-      <ErrorBoundary>
+    <Suspense fallback={<div className="loader--global"><Loader /></div>}>
         <Provider store={store}>
           <BrowserRouter>
-            <Route path="/" render={(props: any) => <Routes {...props} />} />
+            <Route path="/" render={(props: any) => <ErrorBoundary {...props}><Routes {...props} /></ErrorBoundary>} />
           </BrowserRouter>
         </Provider>
-      </ErrorBoundary>
     </Suspense>
   );
 }

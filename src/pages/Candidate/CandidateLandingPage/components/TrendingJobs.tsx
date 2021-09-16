@@ -26,14 +26,14 @@ const TrendingJobs: React.FC<TrendingJobsPropTypes> = (props) => {
             <h2>Top trending jobs</h2>
             <div className="recommended-job-widget-container">
                 {trendingJobs.length>0 ? 
-                    trendingJobs.map((itm: any) => <JobWidget key={JSON.stringify(itm)} {...{...itm, onClick: handleCardClick}} />)
+                    trendingJobs.slice(0, 4).map((itm: any) => <JobWidget key={itm.jobslug} {...{...itm, onClick: handleCardClick}} />)
                     :
                     <div className="recommended-job-widget__empty"><Empty/></div>
                 }
             </div>
-            {trendingJobs.length>0 && <div className="see-more-container">
+            {trendingJobs.length>4 ? <div className="see-more-container">
                 <Button onClick={() => { history.push('/search?q=trending'); setSearchType('trending') }}>See more...</Button>
-            </div>}
+            </div> : <br/>}
         </div>
     )
 }

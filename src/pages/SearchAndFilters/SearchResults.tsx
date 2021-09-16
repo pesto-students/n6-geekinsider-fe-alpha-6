@@ -12,7 +12,7 @@ import './SearchResult.scss';
 
 const SingleWidget: React.FC<any> = (props) => {
     const { itm, setSelectedData, selectedData } = props;
-    const { jobTitle, skills, jobLocation, ctc, exp, numberOfApplications, jobDescription, companyName, jobslug } = itm;
+    const { jobTitle, skills, jobLocation, ctc, exp, companyName, jobslug } = itm;
 
     return (
         <Card 
@@ -34,7 +34,6 @@ const SingleWidget: React.FC<any> = (props) => {
                 <div><MdLocationOn style={iconStyles} />{jobLocation}</div>
                 <div title={`${ctc} lacs per annum`}><MdMonetizationOn style={iconStyles} />{ctc} LPA</div>
                 <div><MdHistory style={iconStyles} />{exp} year</div>
-                {/* <Tooltip title={`${numberOfApplications} already applied`} placement="topRight"><span className="numbers-applied">{numberOfApplications}+</span></Tooltip> */}
             </section>
         </Card>
     )

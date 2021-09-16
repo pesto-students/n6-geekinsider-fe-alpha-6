@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Card, Button } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
 import { FaGithub, FaWhatsapp } from 'react-icons/fa';
 
@@ -15,7 +14,6 @@ import './RecruiterCandidateDetails.scss';
 
 const RecruiterCandidateDetails: React.FC<RecruiterCandidateDetailsPropTypes> = (props) => {
     const { recruiterCandidateDetails, match, fetchCandidateDetails } = props;
-    const history = useHistory();
     const {
         aboutid,
         ctc,

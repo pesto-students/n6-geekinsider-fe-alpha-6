@@ -26,7 +26,7 @@ class ErrorBoundary extends Component<PropsTypes, StateTypes> {
                     status="404"
                     title="404"
                     subTitle="Something went wrong!."
-                    extra={<Button type="primary">Back Home</Button>}
+                    extra={<Button type="primary" onClick={() => this.props.history.push('/home')}>Back Home</Button>}
                 />
             )
         }

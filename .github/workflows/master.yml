@@ -56,5 +56,5 @@ jobs:
       - name: Request Invalidation to AWS Cloudfront
         uses: oneyedev/aws-cloudfront-invalidation@v1
         with:
-          distribution-id: ${{ DISTRIBUTION }}
+          distribution-id: ${{ secrets.DISTRIBUTION }}
           paths: '/*'

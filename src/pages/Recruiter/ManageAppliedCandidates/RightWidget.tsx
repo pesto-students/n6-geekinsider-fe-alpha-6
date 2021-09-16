@@ -1,47 +1,55 @@
-import React, { useEffect } from "react";
-import { Card, Progress, Button } from "antd";
-import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
-import { FaGithub, FaWhatsapp } from "react-icons/fa";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Card, Button } from "antd";
 import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { FaGithub, FaWhatsapp } from "react-icons/fa";
+import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
 
-import {
-  generateGithubUrl,
-  getWhatsAppUrl,
-  iconStyles,
-} from "../../../../utils";
-import About from "../../../../components/About";
-import { StateTypes, fetchCandidateDetails } from "../../../../redux";
-import "./RecruiterSearchDetails.scss";
-import SkillSection from "../../../../components/SkillSection";
+import { generateGithubUrl, getWhatsAppUrl, iconStyles } from "../../../utils";
+import { StateTypes, fetchAppliedCandidateDetail } from "../../../redux";
+import About from "../../../components/About";
+import SkillSection from "../../../components/SkillSection";
+import "./RightWidget.scss";
 
-const RecruiterSearchDetails: React.FC<any> = (props) => {
+const RightWidget: React.FC<any> = (props) => {
+  console.log(props);
+  const [mappableSkills, setMappableSkills] = useState<string[]>([]);
   const {
-    aboutid,
+    about,
+    name,
+    skills,
+    location,
     ctc,
     exp,
     githubUrl,
-    jobTitle,
-    location,
-    name,
-    skills,
     whatsappNumber,
-    about,
-    __v,
-    _id,
-    fetchCandidateDetails,
+    jobTitle,
+    userId,
     gitInfo,
-    searchType,
+    fetchAppliedCandidateDetail,
   } = props;
 
   useEffect(() => {
+    if (skills)
+      setMappableSkills(
+        typeof skills === "string" ? skills.split(",") : skills
+      );
+  }, [skills]);
+
+  useEffect(() => {
     if (!gitInfo) {
-      fetchCandidateDetails(aboutid);
+      fetchAppliedCandidateDetail(userId);
     }
-  }, [aboutid, searchType]);
+  }, []);
+
+  useEffect(() => {
+    if (!gitInfo) {
+      fetchAppliedCandidateDetail(userId);
+    }
+  }, [userId]);
 
   return (
-    <div className="recruiter-search-details">
+    <div className="manage__applicants">
       <section className="each-widget">
         <div className="right-section">
           <h2>{name}</h2>
@@ -102,19 +110,14 @@ const RecruiterSearchDetails: React.FC<any> = (props) => {
   );
 };
 
-const mapStateToProps = (state: StateTypes) => ({
-  searchType: state.searchType,
-});
+const mapStateToProps = (state: StateTypes) => ({});
 
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      fetchCandidateDetails,
+      fetchAppliedCandidateDetail,
     },
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RecruiterSearchDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(RightWidget);

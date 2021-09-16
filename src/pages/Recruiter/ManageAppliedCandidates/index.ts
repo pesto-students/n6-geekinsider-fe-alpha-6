@@ -1,2 +1,2 @@
-export { default } from './ManageAppliedCandidates';
-export * from './types';
+export { default } from "./ManageAppliedCandidates";
+export * from "./types";

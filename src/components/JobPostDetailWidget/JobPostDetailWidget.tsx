@@ -1,60 +1,103 @@
-import React from 'react';
-import { Card, Button, Avatar } from 'antd';
+import React, { useEffect } from "react";
+import { Card, Button } from "antd";
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import { applyForJob } from '../../redux/actions';
-import { iconStyles } from '../../utils';
-import { StateTypes } from '../../redux';
-import { useHistory } from 'react-router';
-import { JobPostDetailWidgetPropTypes } from './types';
-import './JobPostDetailWidget.scss';
-import About from '../About';
+import About from "../About";
+import { iconStyles } from "../../utils";
+import { StateTypes, fetchSearchJobDetail, applyForJob } from "../../redux";
+import { JobPostDetailWidgetPropTypes } from "./types";
+import "./JobPostDetailWidget.scss";
 
-// const JobPostDetailWidget: React.FC<JobPostDetailWidgetPropTypes> = (props) => {
 const JobPostDetailWidget: React.FC<any> = (props) => {
-    const history = useHistory();
-    const { jobTitle, skills, jobLocation, ctc, exp, numberOfApplications, jobDescription, companyName, applyForJob, jobslug } = props;
-    const mappableSkills = typeof skills === 'string' ? skills.split(',') : skills;
+  const {
+    jobTitle,
+    skills,
+    jobLocation,
+    ctc,
+    exp,
+    searchType,
+    jobDescription,
+    companyName,
+    applyForJob,
+    jobslug,
+    fetchSearchJobDetail,
+  } = props;
+  const mappableSkills =
+    typeof skills === "string" ? skills.split(",") : skills;
 
-    const handleApply = () => {
-        jobslug && applyForJob(jobslug);
+  const handleApply = () => {
+    jobslug && applyForJob(jobslug);
+  };
+
+  useEffect(() => {
+    if (!jobDescription) {
+      fetchSearchJobDetail(jobslug);
     }
-    
-    return (
-        <div className="job-posting-detail-widget">
-            <Card>
-                <section className="each-widget">
-                    {/* <Avatar size={75}>{companyName[0]}</Avatar> */}
-                    <div className="right-section">
-                        <h3>{jobTitle}</h3>
-                        <span>{companyName}</span>
-                        {/* <a>{numberOfApplications} applicants</a> */}
-                    </div>
-                    <div className="action-buttons">
-                        <Button type="primary" onClick={handleApply}>Apply</Button>
-                        {/* <Button type="primary">Company details</Button> */}
-                    </div>
-                </section>  
-                <section className="tags-section">
-                    {mappableSkills.map((itm: string) => <span className="tags" key={itm}>{itm}</span>)}
-                </section>
-                <section className="footer-section">
-                    <div><MdLocationOn style={iconStyles} />{jobLocation}</div>
-                    <div title={`${ctc} lacs per annum`}><MdMonetizationOn style={iconStyles} />{ctc} LPA</div>
-                    <div><MdHistory style={iconStyles} />{exp} year</div>
-                </section>
-                <About title="About the job">{jobDescription}</About>
-            </Card>
-        </div>
-    )
-}
+  }, []);
 
-const mapStateToProps = (state: StateTypes) => ({});
-  
-const mapDispatchToProps = (dispatch: any) => bindActionCreators({
-    applyForJob
-}, dispatch);
+  useEffect(() => {
+    if (!jobDescription) {
+      fetchSearchJobDetail(jobslug);
+    }
+  }, [jobslug, searchType]);
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobPostDetailWidget);
+  return (
+    <div className="job-posting-detail-widget">
+      <Card>
+        <section className="each-widget">
+          <div className="right-section">
+            <h3>{jobTitle}</h3>
+            <span>{companyName}</span>
+          </div>
+          <div className="action-buttons">
+            <Button type="primary" onClick={handleApply}>
+              Apply
+            </Button>
+          </div>
+        </section>
+        <section className="tags-section">
+          {mappableSkills.map((itm: string) => (
+            <span className="tags" key={itm}>
+              {itm}
+            </span>
+          ))}
+        </section>
+        <section className="footer-section">
+          <div>
+            <MdLocationOn style={iconStyles} />
+            {jobLocation}
+          </div>
+          <div title={`${ctc} lacs per annum`}>
+            <MdMonetizationOn style={iconStyles} />
+            {ctc} LPA
+          </div>
+          <div>
+            <MdHistory style={iconStyles} />
+            {exp} year
+          </div>
+        </section>
+        <About title="About the job">{jobDescription}</About>
+      </Card>
+    </div>
+  );
+};
+
+const mapStateToProps = (state: StateTypes) => ({
+  searchType: state.searchType,
+});
+
+const mapDispatchToProps = (dispatch: any) =>
+  bindActionCreators(
+    {
+      applyForJob,
+      fetchSearchJobDetail,
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(JobPostDetailWidget);

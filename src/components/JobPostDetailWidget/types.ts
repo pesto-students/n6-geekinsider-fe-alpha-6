@@ -1,11 +1,15 @@
+import { SearchType } from "../../redux";
+
 export interface JobPostDetailWidgetPropTypes {
-    jobTitle: string, 
-    skills: string, 
-    jobLocation: string, 
-    ctc: string, 
-    exp: string, 
-    jobDescription: string, 
-    companyName: string,
-    numberOfApplications: any,
-    applyForJob: (id: string) => void
+  jobTitle: string;
+  skills: any;
+  jobLocation: string;
+  ctc: number;
+  exp: number;
+  jobDescription: string;
+  companyName: string;
+  applyForJob: (id: string) => void;
+  searchType: SearchType;
+  jobslug: string;
+  fetchSearchJobDetail: (e: string) => void;
 }

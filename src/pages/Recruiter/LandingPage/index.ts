@@ -1,2 +1,2 @@
-export { default } from './RecruiterLanding';
-export * from './types';
+export { default } from "./RecruiterLanding";
+export * from "./types";

@@ -3,9 +3,6 @@
 }
 
 .recruiter-landing {
-    // display: flex;
-    // flex-wrap: wrap;
-    // margin: 20px;
     display: grid;
     grid-template-columns: 30% 70%;
     gap: 50px;
@@ -15,7 +12,24 @@
         padding-top: 24px;
     }
     .recruiter-landing__right {
-        // margin-top: 20px;
+        .posted-jobs {
+            .posted-jobs__container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                .single-widget {
+                    width: 331px;
+                    .ant-card {
+                        margin: 0;       
+                    }
+                }
+            }
+            .posted-jobs__footer {
+                margin-top: 10px;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
     }
 }
 

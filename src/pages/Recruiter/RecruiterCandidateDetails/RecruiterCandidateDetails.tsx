@@ -16,19 +16,15 @@ const RecruiterCandidateDetails: React.FC<RecruiterCandidateDetailsPropTypes> =
   (props) => {
     const { recruiterCandidateDetails, match, fetchCandidateDetails } = props;
     const {
-      aboutid,
       ctc,
       exp,
       githubUrl,
-      handleClick,
       jobTitle,
       location,
       name,
       skills,
       whatsappNumber,
       about,
-      __v,
-      _id,
       gitInfo,
     } = recruiterCandidateDetails;
 

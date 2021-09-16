@@ -23,7 +23,6 @@ const ApplicationManager: React.FC<ApplicationManagerTypes> = (props) => {
     jobLocation,
     jobTitle,
     skills,
-    jobslug,
     gitInfo,
   } = activeJob;
   const history = useHistory();

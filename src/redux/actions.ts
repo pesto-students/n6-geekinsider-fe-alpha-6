@@ -57,7 +57,7 @@ export const fetchProfileDetails = () => {
         });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -71,12 +71,12 @@ export const saveCandidateData = (
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
       .post("/api/users/user", values)
-      .then((data) => {
+      .then(() => {
         dispatch({ type: "SET_PROFILE_DETAIL", payload: values });
         callback();
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -90,12 +90,12 @@ export const saveRecruiterData = (
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
       .post("/api/users/user", values)
-      .then((data) => {
+      .then(() => {
         dispatch({ type: "SET_PROFILE_DETAIL", payload: values });
         callback();
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -119,7 +119,7 @@ export const createJobPost = (values: RecruitereSubmitTypes, callback: any) => {
         callback();
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -134,7 +134,7 @@ export const fetchPostedJobs = () => {
         dispatch({ type: "SET_POSTED_JOBS", payload: data.jobRecord });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -149,7 +149,7 @@ export const fetchSkillSearch = (skills: string[]) => {
         dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: unionArray(store.getState().skillSearch, data.jobRecord, 'jobslug') });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -174,7 +174,7 @@ export const applyForJob = (id: string, callback?: () => void) => {
           dispatch({ type: "SET_LOADING", payload: false });
         }
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -189,7 +189,7 @@ export const getJobDetails = (cname: string) => {
         dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: data.jobRecord });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -208,7 +208,7 @@ export const fetchTrendingJobs = () => {
         }
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
         dispatch({ type: "SET_TRENDING_JOBS", payload: [] });
       });
@@ -228,7 +228,7 @@ export const fetchRecommendedJobs = () => {
         }
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
         dispatch({ type: "SET_RECOMMENDED_JOBS", payload: [] });
       });
@@ -244,7 +244,7 @@ export const fetchJobDetail = (id: string) => {
         dispatch({ type: "SET_ACTIVE_JOB", payload: data.jobRecord });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -259,7 +259,7 @@ export const fetchRecommendedCandidates = () => {
         dispatch({ type: "SET_RECOMMENDED_CANDIDATES", payload: data.user });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -286,7 +286,7 @@ export const fetchCompanySearchData = (cname: string) => {
         dispatch({ type: "SET_COMPANY_SEARCH", payload: data.jobRecord });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -308,7 +308,7 @@ export const fetchAppliedCandidates = (jobslug: string) => {
         }
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
         dispatch({ type: "SET_APPLIED_CANDIDATES", payload: [] });
       });
@@ -367,7 +367,7 @@ export const fetchCandidateDetails = (aboutId: string) => {
         }
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
         dispatch({ type: "SET_APPLIED_CANDIDATES", payload: [] });
       });
@@ -383,7 +383,7 @@ export const fetchRecruiterSkillSearch = (skills: string[]) => {
         dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: unionArray(store.getState().skillSearch, data?.user, 'aboutid') });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -398,7 +398,7 @@ export const fetchCities = () => {
         dispatch({ type: "SET_CITIES", payload: data?.cities });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -413,7 +413,7 @@ export const fetchSkills = () => {
         dispatch({ type: "SET_SKILLS", payload: data?.skills });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -445,7 +445,7 @@ export const fetchAppliedCandidateDetail = (userId: string) => {
         });
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };
@@ -509,7 +509,7 @@ export const fetchSearchJobDetail = (jobSlug: string) => {
         }
         dispatch({ type: "SET_LOADING", payload: false });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: "SET_LOADING", payload: false });
       });
   };

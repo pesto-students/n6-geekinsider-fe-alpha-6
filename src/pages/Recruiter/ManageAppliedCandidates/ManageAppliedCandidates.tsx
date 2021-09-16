@@ -17,8 +17,6 @@ const SingleWidget: React.FC<any> = (props) => {
     location,
     name,
     skills,
-    userId,
-    whatsappNumber,
     selected,
   } = props;
   return (

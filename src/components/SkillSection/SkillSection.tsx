@@ -1,9 +1,17 @@
 import React from "react";
 import { Progress } from "antd";
 
-const SkillSection: React.FC<any> = (props) => {
+interface SkillSectionPropTypes {
+  gitInfo: { 
+    repoCount: number;
+    skills: string[];
+    skillsOrder: number[];
+  };
+}
+
+const SkillSection: React.FC<SkillSectionPropTypes> = (props) => {
   const { gitInfo } = props;
-  const { repoCount, repoName, skills, skillsOrder } = gitInfo;
+  const { repoCount, skills, skillsOrder } = gitInfo;
   return (
     <>
       <section className="skills-section">

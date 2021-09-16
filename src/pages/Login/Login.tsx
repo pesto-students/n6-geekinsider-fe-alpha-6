@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Modal, Tabs, notification } from "antd";
+import { Form, Input, Button, Modal, notification } from "antd";
 import { Auth } from "aws-amplify";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
+// import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 
 import { setUserType, StateTypes } from "../../redux";
 import { LoginPropsTypes, LoginFormSubmitTypes } from "./types";
 import "./Login.scss";
-
-const { TabPane } = Tabs;
 
 const Login: React.FC<LoginPropsTypes> = (props) => {
   const { setUserType, history, setIsAuth } = props;
@@ -42,13 +40,8 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
 
   const setSignUpModalVisible = () => history.push("/signup");
 
-  const signInWithGoogle = () =>
-    Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google });
-
-  const handleRecruiterSubmit = (values: LoginFormSubmitTypes) => {
-    signInFunc(values);
-    setUserType("recruiter");
-  };
+  // const signInWithGoogle = () =>
+  //   Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google });
 
   const handleCandidateSubmit = (values: LoginFormSubmitTypes) => {
     signInFunc(values);
@@ -95,11 +88,11 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
             Login
           </Button>
         </Form.Item>
-        <Form.Item>
+        {/* <Form.Item>
           <Button htmlType="submit" block onClick={signInWithGoogle}>
             Sign in with Google
           </Button>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item>
           <div className="login__otherlinks">
             <Button type="link" onClick={setSignUpModalVisible}>

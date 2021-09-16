@@ -8,7 +8,7 @@ import { CandidateJobDetailPropTypes } from ".";
 import "./CandidateJobDetail.scss";
 
 const CandidateJobDetail: React.FC<CandidateJobDetailPropTypes> = (props) => {
-  const { activeJob, match, candidateDetail, fetchJobDetail } = props;
+  const { activeJob, match, fetchJobDetail } = props;
 
   useEffect(() => {
     fetchJobDetail(match.params.slug);

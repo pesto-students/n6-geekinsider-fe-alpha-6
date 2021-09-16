@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Progress } from "antd";
+import { Card } from "antd";
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { bindActionCreators } from "redux";
@@ -26,7 +26,6 @@ const CandidateDetails: React.FC<CandidateSubmitTypes> = (props) => {
     ctc,
     exp,
     githubUrl,
-    whatsappNumber,
     jobTitle,
     skillsOrder,
     gitskills,

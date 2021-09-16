@@ -67,7 +67,7 @@ const RightWidget: React.FC<any> = (props) => {
         </div>
       </section>
       <section className="tags-section">
-        {skills?.map((itm: string) => (
+        {mappableSkills?.map((itm: string) => (
           <span className="tags" key={itm}>
             {itm}
           </span>

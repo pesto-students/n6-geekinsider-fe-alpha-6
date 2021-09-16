@@ -12,7 +12,7 @@ import "./SearchResult.scss";
 
 const SingleWidget: React.FC<any> = (props) => {
   const { itm, setSelectedData, selectedData } = props;
-  const { jobTitle, skills, jobLocation, ctc, exp, companyName, jobslug } = itm;
+  const { jobTitle, skills, jobLocation, ctc, exp, companyName } = itm;
 
   return (
     <Card

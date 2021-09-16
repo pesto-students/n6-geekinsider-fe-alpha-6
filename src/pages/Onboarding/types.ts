@@ -15,7 +15,7 @@ export interface CandidateSubmitTypes {
   location: string;
   name: string;
   skills?: string[] | string;
-  whatsappNumber: string;
+  whatsappNumber?: string;
   fetchCandidateDetails: (e: string) => void;
   gitskills: any;
   skillsOrder: any;
@@ -36,7 +36,7 @@ export interface RecruitereSubmitTypes {
   location: string;
   name: string;
   skills?: string[] | string;
-  whatsappNumber: string;
+  whatsappNumber?: string;
   empSize: number;
   preferredIndustry: string;
   site: string;

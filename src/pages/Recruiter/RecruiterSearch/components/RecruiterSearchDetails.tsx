@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Progress, Button } from "antd";
+import { Card, Button } from "antd";
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
 import { FaGithub, FaWhatsapp } from "react-icons/fa";
 import { connect } from "react-redux";
@@ -12,8 +12,8 @@ import {
 } from "../../../../utils";
 import About from "../../../../components/About";
 import { StateTypes, fetchCandidateDetails } from "../../../../redux";
+import SkillSection from "../../../../components/SkillSection"; 
 import "./RecruiterSearchDetails.scss";
-import SkillSection from "../../../../components/SkillSection";
 
 const RecruiterSearchDetails: React.FC<any> = (props) => {
   const {
@@ -27,8 +27,6 @@ const RecruiterSearchDetails: React.FC<any> = (props) => {
     skills,
     whatsappNumber,
     about,
-    __v,
-    _id,
     fetchCandidateDetails,
     gitInfo,
     searchType,

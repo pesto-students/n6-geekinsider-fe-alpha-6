@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "antd";
 import { AboutPropTypes } from ".";
 
 const About: React.FC<AboutPropTypes> = ({ children, title }) => {

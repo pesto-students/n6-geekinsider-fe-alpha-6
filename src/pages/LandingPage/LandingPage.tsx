@@ -25,7 +25,7 @@ const LandingPage: React.FC<LandingPagePropTypes> = (props) => {
             : "recruiter";
         setUserType(type);
       })
-      .catch((error) => {
+      .catch(() => {
         //
       });
   }, []);

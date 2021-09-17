@@ -3,6 +3,7 @@ import { Auth } from "aws-amplify";
 import { Input, Dropdown, Menu, Button } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { useHistory } from "react-router";
 import { UserOutlined } from "@ant-design/icons";
 
 import RecruiterSkillSearch from "./RecruiterSkillSearch";
@@ -17,12 +18,12 @@ import {
   StateTypes,
   fetchCities,
   fetchSkills,
+  setIsAuth
 } from "../../redux";
 import "./Navbar.scss";
 
 const NavBar: React.FC<NavBarPropTypes> = (props) => {
   const {
-    history,
     setIsAuth,
     setUserType,
     setLoading,
@@ -35,6 +36,7 @@ const NavBar: React.FC<NavBarPropTypes> = (props) => {
     skills,
     clearStates,
   } = props;
+  const history = useHistory();
 
   useEffect(() => {
     cities.length === 0 && fetchCities();
@@ -150,6 +152,7 @@ const mapDispatchToProps = (dispatch: any) =>
       fetchCities,
       fetchSkills,
       clearStates,
+      setIsAuth
     },
     dispatch
   );

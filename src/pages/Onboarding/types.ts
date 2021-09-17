@@ -1,8 +1,8 @@
 export interface CandidateOnboardingPropTypes {
-  history: any;
   saveCandidateData: (e: CandidateSubmitTypes, history: any) => void;
   skills: string[];
   cities: string[];
+  fetchProfileDetails: () => void;
 }
 
 export interface CandidateSubmitTypes {
@@ -17,15 +17,12 @@ export interface CandidateSubmitTypes {
   skills?: string[] | string;
   whatsappNumber?: string;
   fetchCandidateDetails: (e: string) => void;
-  gitskills: any;
-  skillsOrder: any;
-  repoCount: any;
+  gitskills: string[];
+  skillsOrder: number[];
+  repoCount?: any;
 }
 
 export interface RecruiterOnboardingPropTypes {
-  history: any;
-  isAuth: boolean;
-  setIsAuth: (e: boolean) => void;
   saveRecruiterData: (e: RecruitereSubmitTypes, history: any) => void;
   skills: string[];
   cities: string[];

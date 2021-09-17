@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import {
-  fetchCities,
-  fetchSkills,
   setIsAuth,
   setUserType,
   StateTypes,
@@ -126,11 +124,7 @@ const Routes: React.FC<AppTypes> = (props) => {
     isAuth,
     location,
     setIsAuth,
-    loading,
-    fetchSkills,
-    fetchCities,
-    cities,
-    skills,
+    loading
   } = props;
   const invalidLocations = ["", "/", "/login", "/signup"];
   const history = useHistory();
@@ -146,8 +140,6 @@ const Routes: React.FC<AppTypes> = (props) => {
               ? "recruiter"
               : "candidate";
           setUserType(type);
-          cities.length === 0 && fetchCities();
-          skills.length === 0 && fetchSkills();
         } catch (e) {
           setIsAuth(false);
           setUserType("");
@@ -173,7 +165,7 @@ const Routes: React.FC<AppTypes> = (props) => {
     <>
       {isAuth && (
         <Suspense fallback={<div />}>
-          <NavBar history={history} setIsAuth={setIsAuth} />
+          <NavBar />
         </Suspense>
       )}
       <Switch>
@@ -181,7 +173,7 @@ const Routes: React.FC<AppTypes> = (props) => {
           <Route
             exact
             path={page.pageLink}
-            render={(props: any) => (
+            render={() => (
               <>
                 {loading && (
                   <div className="loader--global">
@@ -189,11 +181,7 @@ const Routes: React.FC<AppTypes> = (props) => {
                   </div>
                 )}
                 <div className="app">
-                  <page.view
-                    {...{ ...props }}
-                    setIsAuth={setIsAuth}
-                    isAuth={isAuth}
-                  />
+                  <page.view />
                 </div>
               </>
             )}
@@ -218,9 +206,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       setIsAuth,
-      setUserType,
-      fetchCities,
-      fetchSkills,
+      setUserType
     },
     dispatch
   );

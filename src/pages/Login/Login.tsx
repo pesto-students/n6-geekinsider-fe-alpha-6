@@ -3,16 +3,18 @@ import { Form, Input, Button, Modal, notification } from "antd";
 import { Auth } from "aws-amplify";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 // import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 
-import { setUserType, StateTypes } from "../../redux";
+import { setUserType, StateTypes, setIsAuth, setLoading } from "../../redux";
 import { LoginPropsTypes, LoginFormSubmitTypes } from "./types";
 import "./Login.scss";
 
 const Login: React.FC<LoginPropsTypes> = (props) => {
-  const { setUserType, history, setIsAuth } = props;
+  const { setUserType, setIsAuth } = props;
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const history = useHistory();
 
   const signInFunc = async (values: LoginFormSubmitTypes) => {
     const { username, password } = values;
@@ -113,6 +115,8 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       setUserType,
+      setIsAuth,
+      setLoading
     },
     dispatch
   );

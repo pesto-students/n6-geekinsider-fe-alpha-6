@@ -12,7 +12,6 @@ import SkillSection from "../../../components/SkillSection";
 import "./RightWidget.scss";
 
 const RightWidget: React.FC<any> = (props) => {
-  console.log(props);
   const [mappableSkills, setMappableSkills] = useState<string[]>([]);
   const {
     about,

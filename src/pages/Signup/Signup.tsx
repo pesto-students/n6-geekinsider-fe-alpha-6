@@ -4,9 +4,10 @@ import { Auth } from "aws-amplify";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
 import makeRequest from "../../utils/makeRequest";
-import { setUserType, StateTypes } from "../../redux";
+import { setUserType, StateTypes, setIsAuth } from "../../redux";
 import {
   SignupTypes,
   SignupTabsType,
@@ -22,7 +23,8 @@ const { TabPane } = Tabs;
 
 const Signup: React.FC<SignupTypes> = (props) => {
 
-  const { userType, setUserType, history, setIsAuth } = props;
+  const history = useHistory();
+  const { userType, setUserType, setIsAuth } = props;
   const [activeTab, setActiveTab] = useState<SignupTabsType>("candidate");
   const [loading, setLoading] = useState<boolean>(false);
   const [userDetail, setUserDetail] = useState<UserDetailTypes>({
@@ -244,6 +246,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       setUserType,
+      setIsAuth
     },
     dispatch
   );

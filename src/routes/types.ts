@@ -5,8 +5,4 @@ export interface AppTypes {
   isAuth: boolean;
   setIsAuth: (e: boolean) => void;
   loading: boolean;
-  fetchSkills: () => void;
-  fetchCities: () => void;
-  cities: string[];
-  skills: string[];
 }

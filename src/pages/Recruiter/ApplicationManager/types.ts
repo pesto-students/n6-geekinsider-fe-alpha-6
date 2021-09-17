@@ -3,5 +3,4 @@ export interface ApplicationManagerTypes {
   appliedCandidates: any;
   fetchJobDetail: (e: string) => void;
   loading: boolean;
-  match: any;
 }

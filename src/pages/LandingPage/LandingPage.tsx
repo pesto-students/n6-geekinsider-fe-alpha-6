@@ -12,7 +12,7 @@ import { UserTypeTypes } from "../../routes";
 import { LandingPagePropTypes } from "./types";
 
 const LandingPage: React.FC<LandingPagePropTypes> = (props) => {
-  const { userType, setUserType } = props;
+  const { userType, setUserType, loading } = props;
   const history = useHistory();
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const LandingPage: React.FC<LandingPagePropTypes> = (props) => {
       case "recruiter":
         return <RecruiterLanding {...{ handleProfileClick }} />;
       default:
-        return <Loader />;
+        return loading ? <div/> : <Loader />;
     }
   };
 
@@ -60,6 +60,7 @@ const LandingPage: React.FC<LandingPagePropTypes> = (props) => {
 
 const mapStateToProps = (state: StateTypes) => ({
   userType: state.userType,
+  loading: state.loading
 });
 
 const mapDispatchToProps = (dispatch: any) =>

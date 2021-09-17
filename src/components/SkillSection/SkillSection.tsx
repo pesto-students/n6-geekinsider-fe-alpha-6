@@ -1,13 +1,6 @@
 import React from "react";
 import { Progress } from "antd";
-
-interface SkillSectionPropTypes {
-  gitInfo: { 
-    repoCount: number;
-    skills: string[];
-    skillsOrder: number[];
-  };
-}
+import { SkillSectionPropTypes } from ".";
 
 const SkillSection: React.FC<SkillSectionPropTypes> = (props) => {
   const { gitInfo } = props;
@@ -31,12 +24,12 @@ const SkillSection: React.FC<SkillSectionPropTypes> = (props) => {
           );
         })}
       </section>
-      <section className="github-repo-section">
+      {Boolean(repoCount) && <section className="github-repo-section">
         <h3>
           <b>Github repo count</b>
         </h3>
         <h2>{repoCount}</h2>
-      </section>
+      </section>}
     </>
   );
 };

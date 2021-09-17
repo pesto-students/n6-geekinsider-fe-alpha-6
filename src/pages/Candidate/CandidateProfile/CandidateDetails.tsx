@@ -13,8 +13,8 @@ import {
 import { CandidateSubmitTypes } from "../../Onboarding/types";
 import { generateGithubUrl, iconStyles } from "../../../utils";
 import About from "../../../components/About";
-import "./CandidateDetails.scss";
 import SkillSection from "../../../components/SkillSection";
+import "./CandidateDetails.scss";
 
 const CandidateDetails: React.FC<CandidateSubmitTypes> = (props) => {
   const [mappableSkills, setMappableSkills] = useState<string[]>([]);

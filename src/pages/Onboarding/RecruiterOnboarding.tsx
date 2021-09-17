@@ -129,7 +129,7 @@ const RecruiterOnboarding: React.FC<RecruiterOnboardingPropTypes> = (props) => {
         </Form.Item>
 
         <Form.Item
-          label="Skills"
+          label="Skills you are looking for"
           name="skills"
           rules={[
             {

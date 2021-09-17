@@ -11,13 +11,11 @@
         overflow: auto;
         margin-top: 15px;
         .ant-card {
-            margin: 5px;
+            margin: 5px 5px 10px 5px;
             .ant-card-body {
                 padding: 12px;
             }
             .each-widget {
-                // width: auto;
-                // max-width: 250px;
                 display: flex;
                 gap: 10px;
                 .right-section {
@@ -30,7 +28,6 @@
             gap: 10px;
             margin-bottom: 15px;
             .right-section {
-                // flex-grow: 1;
                 width: 75%;
                 h3 {
                     white-space: nowrap;
@@ -53,6 +50,39 @@
                 position: absolute;
                 right: 10px;
                 bottom: 5px;
+            }
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        margin: 0 5px 5px 0;
+        .recruiter-search-details {
+            margin: 20px 0 0 0px;
+        }
+        .search-result-widget-container {
+            .ant-card {
+                margin: 5px;
+            }
+        }
+    }
+    @media only screen and (min-width: 600px) {
+        margin: 0 5px 5px 0;
+        .recruiter-search-details {
+            margin: 20px 0 0 0px;
+        }
+        .search-result-widget-container {
+            .ant-card {
+                margin: 5px;
+            }
+        }
+    }
+    @media only screen and (min-width: 768px) {
+        margin: 10px;
+        .recruiter-search-details {
+            margin: 20px 0 0 10px;
+        }
+        .search-result-widget-container {
+            .ant-card {
+                margin: 5px 5px 10px 5px;
             }
         }
     }

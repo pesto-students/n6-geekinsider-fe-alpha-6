@@ -12,7 +12,6 @@ import SkillSection from "../../../components/SkillSection";
 import "./RightWidget.scss";
 
 const RightWidget: React.FC<any> = (props) => {
-  console.log(props);
   const [mappableSkills, setMappableSkills] = useState<string[]>([]);
   const {
     about,
@@ -67,7 +66,7 @@ const RightWidget: React.FC<any> = (props) => {
         </div>
       </section>
       <section className="tags-section">
-        {skills?.map((itm: string) => (
+        {mappableSkills?.map((itm: string) => (
           <span className="tags" key={itm}>
             {itm}
           </span>

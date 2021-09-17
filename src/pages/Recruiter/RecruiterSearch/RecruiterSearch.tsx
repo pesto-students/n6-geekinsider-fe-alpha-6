@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import RecruiterSearchResults from "./RecruiterSearchResults";
 import {
   StateTypes,
-  setSearchType,
   SearchType,
   fetchRecommendedCandidates,
 } from "../../../redux";
@@ -16,7 +15,6 @@ const RecruiterSearch: React.FC<any> = (props) => {
     skillSearch,
     searchType,
     recommendedCandidates,
-    setSearchType,
     fetchRecommendedCandidates,
   } = props;
 
@@ -63,7 +61,6 @@ const mapStateToProps = (state: StateTypes) => ({
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      setSearchType,
       fetchRecommendedCandidates,
     },
     dispatch

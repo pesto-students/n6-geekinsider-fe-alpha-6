@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Card, Button } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 
 import Loader from "../../../components/Loader";
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
@@ -10,11 +10,13 @@ import { iconStyles } from "../../../utils";
 import { ApplicationManagerTypes } from "./types";
 import { StateTypes, fetchJobDetail } from "../../../redux";
 import About from "../../../components/About";
-import "./ApplicationManager.scss";
 import SkillSection from "../../../components/SkillSection";
+import "./ApplicationManager.scss";
 
 const ApplicationManager: React.FC<ApplicationManagerTypes> = (props) => {
-  const { activeJob, loading, match, fetchJobDetail } = props;
+  const history = useHistory();
+  const match: any = useRouteMatch();
+  const { activeJob, loading, fetchJobDetail } = props;
   const {
     companyName,
     ctc,
@@ -23,10 +25,8 @@ const ApplicationManager: React.FC<ApplicationManagerTypes> = (props) => {
     jobLocation,
     jobTitle,
     skills,
-    jobslug,
     gitInfo,
   } = activeJob;
-  const history = useHistory();
 
   useEffect(() => {
     fetchJobDetail(match.params.slug);

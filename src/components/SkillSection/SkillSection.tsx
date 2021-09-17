@@ -1,9 +1,10 @@
 import React from "react";
 import { Progress } from "antd";
+import { SkillSectionPropTypes } from ".";
 
-const SkillSection: React.FC<any> = (props) => {
+const SkillSection: React.FC<SkillSectionPropTypes> = (props) => {
   const { gitInfo } = props;
-  const { repoCount, repoName, skills, skillsOrder } = gitInfo;
+  const { repoCount, skills, skillsOrder } = gitInfo;
   return (
     <>
       <section className="skills-section">
@@ -23,12 +24,12 @@ const SkillSection: React.FC<any> = (props) => {
           );
         })}
       </section>
-      <section className="github-repo-section">
+      {Boolean(repoCount) && <section className="github-repo-section">
         <h3>
           <b>Github repo count</b>
         </h3>
         <h2>{repoCount}</h2>
-      </section>
+      </section>}
     </>
   );
 };

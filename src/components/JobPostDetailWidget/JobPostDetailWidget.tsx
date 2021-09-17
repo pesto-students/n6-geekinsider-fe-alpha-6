@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import About from "../About";
 import { iconStyles } from "../../utils";
 import { StateTypes, fetchSearchJobDetail, applyForJob } from "../../redux";
-import { JobPostDetailWidgetPropTypes } from "./types";
 import "./JobPostDetailWidget.scss";
 
 const JobPostDetailWidget: React.FC<any> = (props) => {

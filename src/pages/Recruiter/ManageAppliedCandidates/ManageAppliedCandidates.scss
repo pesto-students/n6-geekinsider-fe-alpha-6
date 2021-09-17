@@ -75,4 +75,7 @@
         flex-wrap: wrap;
         gap: 5px 0;
     }
+    @media only screen and (max-width: 600px) {
+        margin: 5px;
+    }
 }

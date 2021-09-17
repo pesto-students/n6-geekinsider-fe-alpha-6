@@ -1,3 +1,4 @@
+import { RecentJobType, SingleWidgetTypes } from "../pages/Recruiter/LandingPage";
 import { UserTypeTypes } from "../routes";
 
 export type SearchType =
@@ -17,21 +18,21 @@ export interface CompanySearchType {
   skills: string[];
 }
 export interface StateTypes {
-  userType: UserTypeTypes | "";
+  userType: UserTypeTypes;
   isAuth: boolean;
   profileDetails: any;
   loading: boolean;
-  recentJobs: any;
+  recentJobs: RecentJobType[];
   skillSearch: JobObjectTypes[];
   trendingJobs: JobObjectTypes[];
   recommendedJobs: JobObjectTypes[];
   activeJob: any;
   jobDetailModalVisible: boolean;
-  recommendedCandidates: any;
+  recommendedCandidates: SingleWidgetTypes[];
   recruiterCandidateDetails: any;
   searchType: SearchType;
-  companySearch: any;
-  appliedCandidates: any;
+  companySearch: JobObjectTypes[];
+  appliedCandidates: SingleWidgetTypes[];
   skills: string[];
   cities: string[];
 }

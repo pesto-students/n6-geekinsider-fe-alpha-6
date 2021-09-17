@@ -2,16 +2,18 @@ import React from "react";
 import { Form, Input, Button, Select } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
-import { saveCandidateData, StateTypes } from "../../redux";
+import { saveCandidateData, StateTypes, fetchProfileDetails } from "../../redux";
 import { CandidateOnboardingPropTypes, CandidateSubmitTypes } from "./types";
 import "./onboarding.scss";
 
 const { Option } = Select;
 
 const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
-  const { history, saveCandidateData, skills, cities } = props;
+  const { saveCandidateData, skills, cities, fetchProfileDetails } = props;
   const [form] = Form.useForm();
+  const history = useHistory();
 
   const onFinish = (values: CandidateSubmitTypes) => {
     const tempValues = Object.assign({}, values);
@@ -23,6 +25,7 @@ const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
   const afterSuccessfullFinish = () => {
     history.push("/home");
     form.resetFields();
+    fetchProfileDetails();
   };
 
   return (
@@ -205,6 +208,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       saveCandidateData,
+      fetchProfileDetails
     },
     dispatch
   );

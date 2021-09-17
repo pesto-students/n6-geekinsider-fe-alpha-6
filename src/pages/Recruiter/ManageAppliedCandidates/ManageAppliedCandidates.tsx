@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Card, Avatar, Empty } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { useRouteMatch } from "react-router";
 import { MdLocationOn, MdMonetizationOn, MdHistory } from "react-icons/md";
 
 import { StateTypes, fetchAppliedCandidates } from "../../../redux";
 import { iconStyles } from "../../../utils";
 import RightWidget from "./RightWidget";
+import { ManageAppliedCandidatesPropTypes } from ".";
 import "../../../components/JobWidget/JobWidget.scss";
 import "./ManageAppliedCandidates.scss";
 
@@ -17,8 +19,6 @@ const SingleWidget: React.FC<any> = (props) => {
     location,
     name,
     skills,
-    userId,
-    whatsappNumber,
     selected,
   } = props;
   return (
@@ -55,19 +55,13 @@ const SingleWidget: React.FC<any> = (props) => {
   );
 };
 
-interface ManageAppliedCandidatesPropTypes {
-  appliedCandidates: any;
-  match: any;
-  fetchAppliedCandidates: (e: string) => void;
-  activeJob: any;
-}
-
 const ManageAppliedCandidates: React.FC<ManageAppliedCandidatesPropTypes> = (
   props
 ) => {
-  const { appliedCandidates, match, fetchAppliedCandidates, activeJob } = props;
+  const { appliedCandidates, fetchAppliedCandidates, activeJob } = props;
   const { jobTitle, jobLocation, ctc } = activeJob;
   const [selected, setSelected] = useState(appliedCandidates[0]);
+  const match: any = useRouteMatch();
 
   useEffect(() => {
     setSelected(appliedCandidates[0]);

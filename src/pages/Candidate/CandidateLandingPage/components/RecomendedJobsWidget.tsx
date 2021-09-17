@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import JobWidget from "../../../../components/JobWidget";
 import {
   fetchRecommendedJobs,
-  fetchJobDetail,
   StateTypes,
 } from "../../../../redux";
 import "../CandidateLandingPage.scss";
@@ -15,13 +14,12 @@ import "../CandidateLandingPage.scss";
 interface RecommCandidateWidgetPropTypes {
   recommendedJobs: any;
   fetchRecommendedJobs: () => void;
-  fetchJobDetail: (id: string) => void;
 }
 
 const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (
   props
 ) => {
-  const { recommendedJobs, fetchRecommendedJobs, fetchJobDetail } = props;
+  const { recommendedJobs, fetchRecommendedJobs } = props;
   const history = useHistory();
 
   useEffect(() => {
@@ -72,7 +70,6 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       fetchRecommendedJobs,
-      fetchJobDetail,
     },
     dispatch
   );

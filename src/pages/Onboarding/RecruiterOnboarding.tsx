@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, Select, InputNumber } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
 import { industryTypes } from "../../utils";
 import { saveRecruiterData, StateTypes } from "../../redux";
@@ -11,8 +12,9 @@ import "./onboarding.scss";
 const { Option } = Select;
 
 const RecruiterOnboarding: React.FC<RecruiterOnboardingPropTypes> = (props) => {
-  const { history, saveRecruiterData, skills, cities } = props;
+  const { saveRecruiterData, skills, cities } = props;
   const [form] = Form.useForm();
+  const history = useHistory();
 
   const onFinish = (values: RecruitereSubmitTypes) => {
     const tempValues = Object.assign({}, values);
@@ -192,7 +194,6 @@ const RecruiterOnboarding: React.FC<RecruiterOnboardingPropTypes> = (props) => {
 };
 
 const mapStateToProps = (state: StateTypes) => ({
-  userType: state.userType,
   skills: state.skills,
   cities: state.cities,
 });

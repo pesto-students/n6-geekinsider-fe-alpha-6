@@ -1,8 +1,8 @@
-import React, { Component, ErrorInfo } from "react";
+import React from "react";
 import { Result, Button } from "antd";
 import { StateTypes, PropsTypes } from ".";
 
-class ErrorBoundary extends Component<PropsTypes, StateTypes> {
+class ErrorBoundary extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
@@ -10,12 +10,13 @@ class ErrorBoundary extends Component<PropsTypes, StateTypes> {
     };
   }
 
-  static getDerivedStateFromError(_: Error): StateTypes {
+  static getDerivedStateFromError(): StateTypes {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch() {
+    // componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // console.error("Uncaught error:", error, errorInfo);
   }
 

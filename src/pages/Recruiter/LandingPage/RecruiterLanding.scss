@@ -4,7 +4,7 @@
 
 .recruiter-landing {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 30% 65%;
     gap: 50px;
     margin: 20px;
     .recruiter-landing__left {
@@ -18,7 +18,7 @@
                 flex-wrap: wrap;
                 gap: 10px;
                 .single-widget {
-                    width: 331px;
+                    width: 305px;
                     .ant-card {
                         margin: 0;       
                     }
@@ -28,8 +28,16 @@
                 margin-top: 10px;
                 display: flex;
                 justify-content: flex-end;
+
+                @media screen and (max-width: 1000px) {
+                    justify-content: flex-start;
+                }
             }
         }
+    }
+    @media screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -92,9 +100,7 @@
         }
         display: flex;
         flex-wrap: wrap;
-        .ant-card {
-            margin: 5px;
-        }
+        gap: 10px 0;
         .each-widget {
             display: flex;
             margin-bottom: 12px;

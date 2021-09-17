@@ -7,6 +7,9 @@
     border-radius: 5px;
     .ant-card {
         width: 100%;
+        .ant-card-body {
+            padding: 12px;
+        }
     }
     .each-widget {
         display: flex;
@@ -50,5 +53,8 @@
         .github-repo-section {
             margin: 0 15px;
         }
+    }
+    @media only screen and (max-width: 600px) {
+        margin: 0px;
     }
 }

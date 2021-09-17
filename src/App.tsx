@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, RouteComponentProps } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <BrowserRouter>
           <Route
             path="/"
-            render={(props: any) => (
+            render={(props: RouteComponentProps) => (
               <ErrorBoundary {...props}>
                 <Routes {...props} />
               </ErrorBoundary>

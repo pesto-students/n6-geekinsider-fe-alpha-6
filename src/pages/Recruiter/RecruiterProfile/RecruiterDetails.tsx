@@ -13,7 +13,7 @@ import "./RecruiterDetails.scss";
 interface RecruiterProfilePropTypes extends RecruitereSubmitTypes {
   recentJobs: any;
   fetchPostedJobs: () => void;
-  fetchJobDetail: (e: string) => void;
+  fetchJobDetail?: (e: string) => void;
 }
 
 const RecruiterDetails: React.FC<RecruiterProfilePropTypes> = (props) => {
@@ -25,11 +25,9 @@ const RecruiterDetails: React.FC<RecruiterProfilePropTypes> = (props) => {
     location,
     name,
     site,
-    whatsappNumber,
     preferredIndustry,
     recentJobs,
     fetchPostedJobs,
-    fetchJobDetail,
   } = props;
   const history = useHistory();
 
@@ -46,11 +44,6 @@ const RecruiterDetails: React.FC<RecruiterProfilePropTypes> = (props) => {
 
   const handleJobPost = () => {
     history.push("/recruiter/postjob");
-  };
-
-  const handleJobCardClick = (jobSlug: string) => {
-    fetchJobDetail(jobSlug);
-    history.push("/recruiter/post");
   };
 
   return (
@@ -93,15 +86,6 @@ const RecruiterDetails: React.FC<RecruiterProfilePropTypes> = (props) => {
         </section>
         <Card>{about}</Card>
       </Card>
-      {/* <Card className="recruiter-profile__footer">
-                <h2>Jobs posted by {name}</h2>
-                <div className="recruiter-profile__jobs-posted">
-                    <div className="job-cards">
-                        {recentJobs.length ? recentJobs.map((itm: any) => <JobWidget {...{...itm, onClick: handleJobCardClick}}/>) : <Empty description="Please post a job to manage here"/>}
-                    </div>
-                    <br/>
-                </div>
-            </Card> */}
     </div>
   );
 };

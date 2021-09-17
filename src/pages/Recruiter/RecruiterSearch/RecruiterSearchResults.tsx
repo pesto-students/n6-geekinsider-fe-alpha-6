@@ -17,11 +17,7 @@ const SingleWidget: React.FC<any> = (props) => {
     location,
     ctc,
     exp,
-    aboutid,
-    githubUrl,
     name,
-    whatsappNumber,
-    _id,
   } = itm;
 
   return (
@@ -57,7 +53,6 @@ const SingleWidget: React.FC<any> = (props) => {
           <MdHistory style={iconStyles} />
           {exp} year
         </div>
-        {/* <Tooltip title={`${numberOfApplications} already applied`} placement="topRight"><span className="numbers-applied">{numberOfApplications}+</span></Tooltip> */}
       </section>
     </Card>
   );

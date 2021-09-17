@@ -14,6 +14,7 @@ Geekinsider is a recruiter-focused job website, lets candidates create their own
 ### Installing
 
 * Fork this repo.
+  [repo](https://github.com/pesto-students/n6-geekinsider-fe-alpha-6)
 * Clone the repo using
   ```
     git clone <link to forked repo>
@@ -37,6 +38,7 @@ Contributors names and contact info
 
 Abhishek Saxena  
 [@saxenaa218](https://github.com/saxenaa218)
+[@vishaljkk](https://github.com/vishaljkk)
 
 ## Acknowledgments
 

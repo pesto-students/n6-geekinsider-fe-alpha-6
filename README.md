@@ -4,6 +4,16 @@ Geekinsider is a recruiter-focused job website, lets candidates create their own
 
 ## Getting Started
 * [URL](https://geekinsider.click)
+* Recruiter credentials
+    ```
+    Email: itvxqzahzcuhxrhete@uivvn.net
+    Password: pass@123
+    ```
+* Candidate credentials
+    ```
+    Email: rsxnmdulrbknjrlhum@rffff.net
+    Password: pass@123
+    ```
 
 ## Description
 

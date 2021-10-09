@@ -60,7 +60,13 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
       footer={null}
       centered
     >
-      <Form onFinish={handleCandidateSubmit}>
+      <Form 
+        onFinish={handleCandidateSubmit} 
+        initialValues={{ 
+          username: 'rsxnmdulrbknjrlhum@rffff.net',
+          password: 'pass@123'
+        }}
+      >
         <Form.Item
           name="username"
           rules={[

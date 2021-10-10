@@ -63,7 +63,7 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
       <Form 
         onFinish={handleCandidateSubmit} 
         initialValues={{ 
-          username: 'rsxnmdulrbknjrlhum@rffff.net',
+          username: 'itvxqzahzcuhxrhete@uivvn.net',
           password: 'pass@123'
         }}
       >

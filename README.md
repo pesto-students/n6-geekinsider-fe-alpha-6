@@ -2,6 +2,12 @@
 
 Geekinsider is a recruiter-focused job website, lets candidates create their own profiles and attach websites like GitHub, LinkedIn, etc, and then Geekinsider creates a uniques insight that lets the recruiter find more relevant candidates.
 
+## Description
+
+Finding the right talent that fits the role that a company is seeking for has always been a challenge. Recruiters have to go through multiple profiles before finding and approaching a potential candidate. Identifying a candidate as a potential fit for the role requires the recruiter to look at different profiles of the candidate in different platforms.
+GeekInsider is a platform that helps to connect companies with the right talent in the IT sector. It aims to provide the recruiters, representing the companies, with a pool of talent along with maximum insights collected from multiple platforms.
+It is also a platform where IT professionals can showcase their work, search for the job that suits them best and apply for it. 
+
 ## Getting Started
 * [URL](https://geekinsider.click)
 * Recruiter credentials

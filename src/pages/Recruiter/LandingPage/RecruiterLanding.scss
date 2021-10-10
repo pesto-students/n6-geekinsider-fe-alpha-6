@@ -24,15 +24,18 @@
                     }
                 }
             }
-            .posted-jobs__footer {
-                margin-top: 10px;
+            .post-jobs__empty-section__button {
                 display: flex;
-                justify-content: flex-end;
-
-                @media screen and (max-width: 1000px) {
-                    justify-content: flex-start;
-                }
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
             }
+        }
+        .posted-jobs__footer {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
         }
     }
     @media screen and (max-width: 600px) {

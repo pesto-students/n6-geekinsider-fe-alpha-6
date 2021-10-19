@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Empty } from "antd";
+import { Button, Empty, Tooltip } from "antd";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -25,10 +25,10 @@ const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (
   };
 
   return (
-    <div className="posted-jobs">
-      <h2>Jobs posted by you</h2>
-      {recentJobs.length > 0 ? (
-        <>
+    <>
+      <div className="posted-jobs">
+        <h2>Jobs posted by you</h2>
+        {recentJobs.length > 0 ? (
           <div className="posted-jobs__container">
             {recentJobs.map((itm: any) => (
               <JobWidget
@@ -37,7 +37,9 @@ const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (
               />
             ))}
           </div>
-          <div className="posted-jobs__footer">
+        ) : (
+          <div className="post-jobs__empty-section__button">
+            <Empty description="No Data, Please post a job and manage here!" />
             <Button
               onClick={() => history.push("/recruiter/postjob")}
               type="primary"
@@ -46,13 +48,20 @@ const RecommCandidateWidget: React.FC<RecommCandidateWidgetPropTypes> = (
               &nbsp;Post a Job
             </Button>
           </div>
-        </>
-      ) : (
-        <div>
-          <Empty description="No Data, Please post a job and manage here!" />
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+      <div className="posted-jobs__footer">
+        <Tooltip title="Post a job">
+          <Button
+            shape="circle"
+            onClick={() => history.push("/recruiter/postjob")}
+            type="primary"
+          >
+            <FaPlus className="icon" />
+          </Button>
+        </Tooltip>
+      </div>
+    </>
   );
 };
 

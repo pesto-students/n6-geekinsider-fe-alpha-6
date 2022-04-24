@@ -20,20 +20,8 @@ export const iconStyles: CSS.Properties<string | number> = {
   marginRight: "5px",
 };
 
-export const isAuthenticated = async () => {
-  return Auth.currentAuthenticatedUser()
-    .then((e) => {
-      return {
-        result: true,
-        ...e,
-      };
-    })
-    .catch((err) => {
-      return {
-        result: false,
-        ...err,
-      };
-    });
+export const isAuthenticated = () => {
+  return localStorage.getItem("access_token") ? true : false;
 };
 
 export const generateGithubUrl = (userName: string) =>
@@ -50,7 +38,11 @@ export const getWhatsAppUrl = (whatsappNumber: string, name: string) => {
   return url;
 };
 
-export const unionArray = (firstArray: any, secondArray: any, uniqueKeyName: string) => {
+export const unionArray = (
+  firstArray: any,
+  secondArray: any,
+  uniqueKeyName: string
+) => {
   const keys: any = {};
   // accumulating keys as the uniqueKeyName with value as the whole object of the firstArray
   for (const each of firstArray) {
@@ -62,7 +54,13 @@ export const unionArray = (firstArray: any, secondArray: any, uniqueKeyName: str
   return secondArray.map((itm: any) => {
     if (keys[itm[uniqueKeyName]]) {
       return keys[itm[uniqueKeyName]];
-    }
-    else return itm;
-  })
-}
+    } else return itm;
+  });
+};
+
+export const getUser = () => {
+  return {
+    user: JSON.parse(localStorage.getItem("user")),
+    token: localStorage.getItem("access_token"),
+  };
+};

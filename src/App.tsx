@@ -10,28 +10,30 @@ import "./App.scss";
 
 const Routes = lazy(() => import("./routes"));
 
-const App: React.FC = () => {
+const App: () => JSX.Element = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="loader--global">
-          <Loader />
-        </div>
-      }
-    >
-      <Provider store={store}>
-        <BrowserRouter>
-          <Route
-            path="/"
-            render={(props: RouteComponentProps) => (
-              <ErrorBoundary {...props}>
-                <Routes {...props} />
-              </ErrorBoundary>
-            )}
-          />
-        </BrowserRouter>
-      </Provider>
-    </Suspense>
+    <div>
+      <Suspense
+        fallback={
+          <div className="loader--global">
+            <Loader />
+          </div>
+        }
+      >
+        <Provider store={store}>
+          <BrowserRouter>
+            <Route
+              path="/"
+              render={(props: RouteComponentProps) => (
+                <ErrorBoundary {...props}>
+                  <Routes {...props} />
+                </ErrorBoundary>
+              )}
+            />
+          </BrowserRouter>
+        </Provider>
+      </Suspense>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import { CandidateProfileDetailsTypes, JobObjectTypes } from "../../../redux";
 
 export interface CandidateLandingPagePropTypes {
   handleProfileClick: () => void;
-  fetchProfileDetails: () => void;
+  fetchCanProfile: () => void;
   profileDetails: CandidateProfileDetailsTypes;
 }
 

@@ -4,14 +4,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 
-import { saveCandidateData, StateTypes, fetchProfileDetails } from "../../redux";
+import { saveCandidateData, StateTypes, fetchCanProfile } from "../../redux";
 import { CandidateOnboardingPropTypes, CandidateSubmitTypes } from "./types";
 import "./onboarding.scss";
 
 const { Option } = Select;
 
 const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
-  const { saveCandidateData, skills, cities, fetchProfileDetails } = props;
+  const { saveCandidateData, skills, cities, fetchCanProfile } = props;
   const [form] = Form.useForm();
   const history = useHistory();
 
@@ -25,7 +25,7 @@ const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
   const afterSuccessfullFinish = () => {
     history.push("/home");
     form.resetFields();
-    fetchProfileDetails();
+    fetchCanProfile();
   };
 
   return (
@@ -68,7 +68,7 @@ const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
             showSearch
             placeholder="Please select your current location"
             optionFilterProp="children"
-            filterOption={(input, option) =>
+            filterOption={(input, option: any) =>
               option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
@@ -167,7 +167,7 @@ const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
           name="about"
           rules={[
             {
-              required: false,
+              required: true,
               message: "Please enter a brief introduction about yourself!",
             },
           ]}
@@ -176,7 +176,7 @@ const CandidateOnboarding: React.FC<CandidateOnboardingPropTypes> = (props) => {
         </Form.Item>
 
         <Form.Item
-          label="Github"
+          label="Github username"
           name="githubUrl"
           rules={[
             {
@@ -208,7 +208,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       saveCandidateData,
-      fetchProfileDetails
+      fetchCanProfile,
     },
     dispatch
   );

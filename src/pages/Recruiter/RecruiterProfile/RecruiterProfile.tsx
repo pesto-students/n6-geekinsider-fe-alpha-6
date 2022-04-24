@@ -3,16 +3,16 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import RecruiterDetails from "./RecruiterDetails";
-import { fetchProfileDetails, StateTypes } from "../../../redux";
+import { fetchRecProfile, StateTypes } from "../../../redux";
 import { ProfilePropsTypes } from "./types";
 import Loader from "../../../components/Loader";
 import "./RecruiterProfile.scss";
 
 const RecruiterProfile: React.FC<ProfilePropsTypes> = (props) => {
-  const { profileDetails, fetchProfileDetails, loading } = props;
+  const { profileDetails, fetchRecProfile, loading } = props;
 
   useEffect(() => {
-    fetchProfileDetails();
+    fetchRecProfile();
   }, []);
 
   return (
@@ -45,7 +45,7 @@ const mapStateToProps = (state: StateTypes) => ({
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      fetchProfileDetails,
+      fetchRecProfile,
     },
     dispatch
   );

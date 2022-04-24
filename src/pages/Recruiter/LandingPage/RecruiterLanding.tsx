@@ -5,16 +5,16 @@ import { connect } from "react-redux";
 import QuickProfileWidget from "../../../components/QuickProfileWidget/QuickProfileWidget";
 import RecommenededCandidatesWidget from "./components/RecommenededCandidatesWidget";
 import JobsPosted from "./components/JobsPosted";
-import { fetchProfileDetails } from "../../../redux";
+import { fetchRecProfile } from "../../../redux";
 import { StateTypes } from "../../../redux";
 import { RecruiterLandingPropTypes } from "./types";
 import "./RecruiterLanding.scss";
 
 const RecruiterLanding: React.FC<RecruiterLandingPropTypes> = (props) => {
-  const { fetchProfileDetails, handleProfileClick, profileDetails } = props;
+  const { fetchRecProfile, handleProfileClick, profileDetails } = props;
 
   useEffect(() => {
-    if (Object.keys(profileDetails).length === 0) fetchProfileDetails();
+    if (Object.keys(profileDetails).length === 0) fetchRecProfile();
   }, []);
 
   return (
@@ -41,7 +41,7 @@ const mapStateToProps = (state: StateTypes) => ({
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      fetchProfileDetails,
+      fetchRecProfile,
     },
     dispatch
   );

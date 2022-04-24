@@ -2,7 +2,7 @@ export interface CandidateOnboardingPropTypes {
   saveCandidateData: (e: CandidateSubmitTypes, history: any) => void;
   skills: string[];
   cities: string[];
-  fetchProfileDetails: () => void;
+  fetchCanProfile: () => void;
 }
 
 export interface CandidateSubmitTypes {

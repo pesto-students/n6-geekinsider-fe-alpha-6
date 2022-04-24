@@ -5,7 +5,7 @@ import {
 } from "../pages/Onboarding/types";
 import { UserTypeTypes } from "../routes";
 import makeRequest from "../utils/makeRequest";
-import { unionArray } from '../utils';
+import { unionArray } from "../utils";
 import { DispatchType } from "./types";
 import { SearchType, StateTypes, store } from ".";
 
@@ -45,11 +45,31 @@ export const setActiveJobModalVisible = (data: boolean) => {
   };
 };
 
-export const fetchProfileDetails = () => {
+// fetch candidate profile details
+export const fetchCanProfile = () => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get("/api/users/user")
+      .get("/api/user-can/user")
+      .then((data) => {
+        dispatch({
+          type: "SET_PROFILE_DETAIL",
+          payload: data.user,
+        });
+        dispatch({ type: "SET_LOADING", payload: false });
+      })
+      .catch(() => {
+        dispatch({ type: "SET_LOADING", payload: false });
+      });
+  };
+};
+
+// fetch recriter profile details
+export const fetchRecProfile = () => {
+  return (dispatch: DispatchType) => {
+    dispatch({ type: "SET_LOADING", payload: true });
+    makeRequest
+      .get("/api/user-rec/user")
       .then((data) => {
         dispatch({
           type: "SET_PROFILE_DETAIL",
@@ -70,7 +90,7 @@ export const saveCandidateData = (
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .post("/api/users/user", values)
+      .post("/api/user-can/user", values)
       .then(() => {
         dispatch({ type: "SET_PROFILE_DETAIL", payload: values });
         callback();
@@ -89,7 +109,7 @@ export const saveRecruiterData = (
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .post("/api/users/user", values)
+      .post("/api/user-rec/user", values)
       .then(() => {
         dispatch({ type: "SET_PROFILE_DETAIL", payload: values });
         callback();
@@ -146,7 +166,14 @@ export const fetchSkillSearch = (skills: string[]) => {
     makeRequest
       .get(`/api/jobs/job?skills=${skills.join(",")}`)
       .then((data) => {
-        dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: unionArray(store.getState().skillSearch, data.jobRecord, 'jobslug') });
+        dispatch({
+          type: "SET_SKILL_SEARCH_RESULT",
+          payload: unionArray(
+            store.getState().skillSearch,
+            data.jobRecord,
+            "jobslug"
+          ),
+        });
         dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch(() => {
@@ -159,7 +186,7 @@ export const applyForJob = (id: string, callback?: () => void) => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .post(`/api/users/apply`, { jobid: id })
+      .post(`/api/user-can/apply`, { jobid: id })
       .then((data) => {
         if (data?.success) {
           dispatch({ type: "SET_LOADING", payload: false });
@@ -254,7 +281,7 @@ export const fetchRecommendedCandidates = () => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get(`/api/users/getcans`)
+      .get(`/api/user-rec/getcans`)
       .then((data) => {
         dispatch({ type: "SET_RECOMMENDED_CANDIDATES", payload: data.user });
         dispatch({ type: "SET_LOADING", payload: false });
@@ -296,12 +323,16 @@ export const fetchAppliedCandidates = (jobslug: string) => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get(`/api/users/applied?jobid=${jobslug}`)
+      .get(`/api/user-rec/applied?jobid=${jobslug}`)
       .then((data) => {
         if (data?.enrolledCandidate) {
           dispatch({
             type: "SET_APPLIED_CANDIDATES",
-            payload: unionArray(store.getState().appliedCandidates, data.enrolledCandidate, 'userId'),
+            payload: unionArray(
+              store.getState().appliedCandidates,
+              data.enrolledCandidate,
+              "userId"
+            ),
           });
         } else {
           dispatch({ type: "SET_APPLIED_CANDIDATES", payload: [] });
@@ -319,7 +350,7 @@ export const fetchCandidateDetails = (aboutId: string) => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get(`/api/users/getcan?canid=${aboutId}`)
+      .get(`/api/user-rec/getcan?canid=${aboutId}`)
       .then((data) => {
         if (data?.user?.about) {
           const tempStore: StateTypes = store.getState();
@@ -378,9 +409,16 @@ export const fetchRecruiterSkillSearch = (skills: string[]) => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get(`/api/users/search-can?skills=${skills.join(",")}`)
+      .get(`/api/user-rec/search-can?skills=${skills.join(",")}`)
       .then((data) => {
-        dispatch({ type: "SET_SKILL_SEARCH_RESULT", payload: unionArray(store.getState().skillSearch, data?.user, 'aboutid') });
+        dispatch({
+          type: "SET_SKILL_SEARCH_RESULT",
+          payload: unionArray(
+            store.getState().skillSearch,
+            data?.user,
+            "aboutid"
+          ),
+        });
         dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch(() => {
@@ -393,7 +431,7 @@ export const fetchCities = () => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get("/api/users/cities")
+      .get("/api/utils/cities")
       .then((data) => {
         dispatch({ type: "SET_CITIES", payload: data?.cities });
         dispatch({ type: "SET_LOADING", payload: false });
@@ -408,7 +446,7 @@ export const fetchSkills = () => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get("/api/users/skills")
+      .get("/api/utils/skills")
       .then((data) => {
         dispatch({ type: "SET_SKILLS", payload: data?.skills });
         dispatch({ type: "SET_LOADING", payload: false });
@@ -429,7 +467,7 @@ export const fetchAppliedCandidateDetail = (userId: string) => {
   return (dispatch: DispatchType) => {
     dispatch({ type: "SET_LOADING", payload: true });
     makeRequest
-      .get(`/api/users/getcan?canid=${userId}`)
+      .get(`/api/user-rec/getcan?canid=${userId}`)
       .then((data) => {
         const tempAppliedCandidates = store
           .getState()

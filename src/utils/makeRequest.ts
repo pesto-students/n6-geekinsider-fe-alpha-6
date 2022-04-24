@@ -6,28 +6,34 @@ if (process.env.NODE_ENV === "production") {
   baseUrl = "https://api.geekinsider.click";
 }
 
+const getHeader = () => {
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+  };
+};
+
 export default {
+  async auth(URL: string, values: any) {
+    return fetch(`${baseUrl}/api/auth/${URL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    }).then((response) => response.json());
+  },
   async get(URL: string) {
     return fetch(`${baseUrl}${URL}`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${(await Auth.currentSession())
-          .getIdToken()
-          .getJwtToken()}`,
-      },
+      headers: getHeader(),
     }).then((response) => response.json());
   },
 
   async post(URL: string, values: any) {
     return fetch(`${baseUrl}${URL}`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${(await Auth.currentSession())
-          .getIdToken()
-          .getJwtToken()}`,
-      },
+      headers: getHeader(),
       body: JSON.stringify(values),
     }).then((response) => response.json());
   },
@@ -35,12 +41,7 @@ export default {
   async put(URL: string, values: any) {
     return fetch(`${baseUrl}${URL}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${(await Auth.currentSession())
-          .getIdToken()
-          .getJwtToken()}`,
-      },
+      headers: getHeader(),
       body: JSON.stringify(values),
     }).then((response) => response.json());
   },
@@ -48,12 +49,7 @@ export default {
   async delete(URL: string, values: any) {
     return fetch(`${baseUrl}${URL}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${(await Auth.currentSession())
-          .getIdToken()
-          .getJwtToken()}`,
-      },
+      headers: getHeader(),
       body: JSON.stringify(values),
     }).then((response) => response.json());
   },

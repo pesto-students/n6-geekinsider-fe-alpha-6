@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 
 import CandidateDetails from "./CandidateDetails";
 import Loader from "../../../components/Loader";
-import { fetchProfileDetails, StateTypes } from "../../../redux";
+import { fetchCanProfile, StateTypes } from "../../../redux";
 import { ProfilePropsTypes } from "./types";
 import "./CandidateProfile.scss";
 
 const CandidateProfile: React.FC<ProfilePropsTypes> = (props) => {
-  const { profileDetails, fetchProfileDetails, loading } = props;
+  const { profileDetails, fetchCanProfile, loading } = props;
 
   useEffect(() => {
-    if (Object.keys(profileDetails).length === 0) fetchProfileDetails();
+    if (Object.keys(profileDetails).length === 0) fetchCanProfile();
   }, []);
 
   return (
@@ -40,7 +40,7 @@ const mapStateToProps = (state: StateTypes) => ({
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      fetchProfileDetails,
+      fetchCanProfile,
     },
     dispatch
   );

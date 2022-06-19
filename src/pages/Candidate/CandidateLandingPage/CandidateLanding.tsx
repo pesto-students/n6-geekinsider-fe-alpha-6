@@ -5,17 +5,17 @@ import { connect } from "react-redux";
 import RecommCandidateWidget from "./components/RecomendedJobsWidget";
 import QuickProfileWidget from "../../../components/QuickProfileWidget/QuickProfileWidget";
 import TopTrending from "./components/TrendingJobs";
-import { fetchProfileDetails, StateTypes } from "../../../redux";
+import { fetchCanProfile, StateTypes } from "../../../redux";
 import { CandidateLandingPagePropTypes } from ".";
 import "./CandidateLandingPage.scss";
 
 const CandidateLandingPage: React.FC<CandidateLandingPagePropTypes> = (
   props
 ) => {
-  const { handleProfileClick, fetchProfileDetails, profileDetails } = props;
+  const { handleProfileClick, fetchCanProfile, profileDetails } = props;
 
   useEffect(() => {
-    if (Object.keys(profileDetails).length === 0) fetchProfileDetails();
+    if (Object.keys(profileDetails).length === 0) fetchCanProfile();
   }, []);
 
   return (
@@ -42,7 +42,7 @@ const mapStateToProps = (state: StateTypes) => ({
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      fetchProfileDetails,
+      fetchCanProfile,
     },
     dispatch
   );

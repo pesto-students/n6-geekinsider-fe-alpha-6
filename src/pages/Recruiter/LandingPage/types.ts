@@ -1,7 +1,7 @@
 import { ProfileDetailsTypes } from "../../../redux";
 
 export interface RecruiterLandingPropTypes {
-  fetchProfileDetails: () => void;
+  fetchRecProfile: () => void;
   handleProfileClick: () => void;
   profileDetails: ProfileDetailsTypes;
 }

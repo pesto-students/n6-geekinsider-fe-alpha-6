@@ -60,7 +60,7 @@ const RecruiterOnboarding: React.FC<RecruiterOnboardingPropTypes> = (props) => {
             showSearch
             placeholder="Select your current industry type"
             optionFilterProp="children"
-            filterOption={(input, option) =>
+            filterOption={(input, option: any) =>
               option?.children.toLowerCase().includes(input.toLowerCase())
             }
           >
@@ -81,7 +81,7 @@ const RecruiterOnboarding: React.FC<RecruiterOnboardingPropTypes> = (props) => {
             showSearch
             placeholder="Please select your current location"
             optionFilterProp="children"
-            filterOption={(input, option) =>
+            filterOption={(input, option: any) =>
               option?.children.toLowerCase().includes(input.toLowerCase())
             }
           >
@@ -163,7 +163,7 @@ const RecruiterOnboarding: React.FC<RecruiterOnboardingPropTypes> = (props) => {
           label="About"
           name="about"
           rules={[
-            { required: false, message: "Please enter a brief introduction!" },
+            { required: true, message: "Please enter a brief introduction!" },
           ]}
         >
           <Input.TextArea placeholder="about" />

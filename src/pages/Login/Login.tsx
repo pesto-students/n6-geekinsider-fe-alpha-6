@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Modal, notification } from "antd";
-import { Auth } from "aws-amplify";
+import axios from "axios";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
@@ -10,24 +10,39 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { setUserType, StateTypes, setIsAuth, setLoading } from "../../redux";
 import { LoginPropsTypes, LoginFormSubmitTypes } from "./types";
 import "./Login.scss";
+import makeRequest from "../../utils/makeRequest";
 
 const Login: React.FC<LoginPropsTypes> = (props) => {
   const { setUserType, setIsAuth } = props;
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
   const history = useHistory();
 
+  const signIn = async (user: string, pass: string) => {
+    const result = await makeRequest.auth("signin", {
+      email: user,
+      password: pass,
+    });
+    return result;
+  };
+
   const signInFunc = async (values: LoginFormSubmitTypes) => {
     const { username, password } = values;
     try {
       setLoginLoading(true);
-      const resp = await Auth.signIn(username, password);
+      const resp = await signIn(username, password);
+      if (resp?.errors) {
+        setLoginLoading(false);
+        notification.error({
+          message: resp.errors?.message,
+        });
+        return;
+      }
       const type =
-        resp.signInUserSession.idToken.payload["cognito:groups"][0] ===
-        "userCandidate"
-          ? "candidate"
-          : "recruiter";
+        resp.user.role === "userCandidate" ? "candidate" : "recruiter";
       setUserType(type);
       setIsAuth(true);
+      localStorage.setItem("access_token", resp.token);
+      localStorage.setItem("user", JSON.stringify(resp.user));
       setLoginLoading(false);
       history.push("/home");
     } catch (e: any) {
@@ -60,11 +75,11 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
       footer={null}
       centered
     >
-      <Form 
-        onFinish={handleCandidateSubmit} 
-        initialValues={{ 
-          username: 'itvxqzahzcuhxrhete@uivvn.net',
-          password: 'pass@123'
+      <Form
+        onFinish={handleCandidateSubmit}
+        initialValues={{
+          username: "itvxqzahzcuhxrhete@uivvn.net",
+          password: "pass@123",
         }}
       >
         <Form.Item
@@ -122,7 +137,7 @@ const mapDispatchToProps = (dispatch: any) =>
     {
       setUserType,
       setIsAuth,
-      setLoading
+      setLoading,
     },
     dispatch
   );

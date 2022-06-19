@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 import {
   StateTypes,
-  fetchProfileDetails,
+  fetchCanProfile,
   fetchCandidateDetails,
 } from "../../../redux";
 import { CandidateSubmitTypes } from "../../Onboarding/types";
@@ -102,7 +102,7 @@ const mapStateToProps = (state: StateTypes) => ({
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      fetchProfileDetails,
+      fetchCanProfile,
       fetchCandidateDetails,
     },
     dispatch

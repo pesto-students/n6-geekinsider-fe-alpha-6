@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Auth } from "aws-amplify";
 import { Input, Dropdown, Menu, Button } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -18,9 +17,10 @@ import {
   StateTypes,
   fetchCities,
   fetchSkills,
-  setIsAuth
+  setIsAuth,
 } from "../../redux";
 import "./Navbar.scss";
+import { getUser } from "../../utils";
 
 const NavBar: React.FC<NavBarPropTypes> = (props) => {
   const {
@@ -45,7 +45,8 @@ const NavBar: React.FC<NavBarPropTypes> = (props) => {
 
   const signOut = async () => {
     setLoading(true);
-    await Auth.signOut();
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
     setIsAuth(false);
     history.push("/login");
     setLoading(false);
@@ -60,12 +61,8 @@ const NavBar: React.FC<NavBarPropTypes> = (props) => {
   const handleGeekInsiderIconClick = () => history.push("/home");
 
   const handleProfileClick = async () => {
-    const type =
-      (await Auth.currentAuthenticatedUser()).signInUserSession.idToken.payload[
-        "cognito:groups"
-      ][0] === "userCandidate"
-        ? "candidate"
-        : "recruiter";
+    const { user } = getUser();
+    const type = user.role === "userCandidate" ? "candidate" : "recruiter";
     setUserType(type);
     const route = `/${type}/profile`;
     history.push(route);
@@ -152,7 +149,7 @@ const mapDispatchToProps = (dispatch: any) =>
       fetchCities,
       fetchSkills,
       clearStates,
-      setIsAuth
+      setIsAuth,
     },
     dispatch
   );

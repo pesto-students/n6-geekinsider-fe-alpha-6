@@ -3,11 +3,7 @@ import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import {
-  setIsAuth,
-  setUserType,
-  StateTypes,
-} from "../redux";
+import { setIsAuth, setUserType, StateTypes } from "../redux";
 import { AppTypes } from "./types";
 import { isAuthenticated } from "../utils";
 import Loader from "../components/Loader";
@@ -120,45 +116,32 @@ const pages = [
 ];
 
 const Routes: React.FC<AppTypes> = (props) => {
-  const {
-    isAuth,
-    location,
-    setIsAuth,
-    loading
-  } = props;
+  const { isAuth, location, setIsAuth, loading } = props;
   const invalidLocations = ["", "/", "/login", "/signup"];
   const history = useHistory();
 
   useEffect(() => {
-    isAuthenticated().then((resp) => {
-      if (resp?.result) {
-        setIsAuth(true);
-        try {
-          const type =
-            resp.signInUserSession.idToken.payload["cognito:groups"][0] ===
-            "userRecruiter"
-              ? "recruiter"
-              : "candidate";
-          setUserType(type);
-        } catch (e) {
-          setIsAuth(false);
-          setUserType("");
-          history.push("/login");
-        }
-        // redirecting to home is these invalid urls will be requested
-        if (
-          location?.pathname &&
-          invalidLocations.includes(location.pathname)
-        ) {
-          history.push("/home");
-        }
-      } else {
-        // redirecting to login when user is not authenticated
+    if (isAuthenticated()) {
+      const resp = JSON.parse(localStorage.getItem("user"));
+      setIsAuth(true);
+      try {
+        const type = resp.role === "userRecruiter" ? "recruiter" : "candidate";
+        setUserType(type);
+      } catch (e) {
         setIsAuth(false);
         setUserType("");
         history.push("/login");
       }
-    });
+      // redirecting to home is these invalid urls will be requested
+      if (location?.pathname && invalidLocations.includes(location.pathname)) {
+        history.push("/home");
+      }
+    } else {
+      // redirecting to login when user is not authenticated
+      setIsAuth(false);
+      setUserType("");
+      history.push("/login");
+    }
   }, []);
 
   return (
@@ -206,7 +189,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       setIsAuth,
-      setUserType
+      setUserType,
     },
     dispatch
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Alert, Modal, Tabs, notification } from "antd";
-import { Auth } from "aws-amplify";
+import axios from "axios";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -22,23 +22,41 @@ import "./Signup.scss";
 const { TabPane } = Tabs;
 
 const Signup: React.FC<SignupTypes> = (props) => {
-
   const history = useHistory();
   const { userType, setUserType, setIsAuth } = props;
-  const [activeTab, setActiveTab] = useState<SignupTabsType>("candidate");
+  const [activeTab, setActiveTab] = useState<UserTypeTypes>("candidate");
   const [loading, setLoading] = useState<boolean>(false);
   const [userDetail, setUserDetail] = useState<UserDetailTypes>({
     email: "",
     password: "`",
   });
 
+  const signUpApi = async ({ username, password }) => {
+    const result = await makeRequest.auth("signup", {
+      email: username,
+      password: password,
+      role: getCandidateNamesForApi(activeTab),
+    });
+    return result;
+  };
+
   const signUp = async (values: UserDetailTypes) => {
     const { email, password } = values;
     try {
       setLoading(true);
-      await Auth.signUp({ username: email, password, attributes: { email } });
-      setActiveTab("emailVerification");
+      const resp = await signUpApi({ username: email, password });
+      // setActiveTab("emailVerification");
+      notification.success({
+        message: "Successfully created account",
+        description: email,
+      });
+      const type =
+        resp.user.role === "userCandidate" ? "candidate" : "recruiter";
+      localStorage.setItem("access_token", resp.token);
+      localStorage.setItem("user", JSON.stringify(resp.user));
       setLoading(false);
+      setIsAuth(true);
+      history.push(`/${type}/onboarding`);
     } catch (error: any) {
       setLoading(false);
       if (error?.code === "UsernameExistsException") {
@@ -49,42 +67,13 @@ const Signup: React.FC<SignupTypes> = (props) => {
     }
   };
 
-  const confirmSignup = async (values: ConfirmSignUpTypes) => {
-    const { email, authCode } = values;
-    try {
-      setLoading(true);
-      await Auth.confirmSignUp(email, authCode);
-      await Auth.signIn(userDetail.email, userDetail.password);
-      await makeRequest.post("/api/users/auth", {
-        groupName: getCandidateNamesForApi(userType),
-      });
-      await Auth.signOut();
-      await Auth.signIn(userDetail.email, userDetail.password);
-      notification.success({
-        message: "Successfully created account",
-        description: email,
-      });
-      setIsAuth(true);
-      history.push(`/${userType}/onboarding`);
-      setLoading(false);
-    } catch (e: any) {
-      if (e?.code === "CodeMismatchException") {
-        notification.error({
-          message: e?.message,
-        });
-      }
-      setIsAuth(false);
-      setLoading(false);
-    }
-  };
-
   const onActiveKeyChange = (val: any) => setActiveTab(val);
 
   const openSignInModal = () => history.push("/login");
 
-  const handleConfirmSignup = async (val: ConfirmSignInFormValueTypes) => {
-    confirmSignup({ ...val, email: userDetail.email });
-  };
+  // const handleConfirmSignup = async (val: ConfirmSignInFormValueTypes) => {
+  //   confirmSignup({ ...val, email: userDetail.email });
+  // };
 
   const getCandidateNamesForApi = (type: UserTypeTypes | undefined) => {
     switch (type) {
@@ -202,7 +191,7 @@ const Signup: React.FC<SignupTypes> = (props) => {
             </Form.Item>
           </Form>
         </TabPane>
-        <TabPane key="emailVerification">
+        {/* <TabPane key="emailVerification">
           <Form name="Email verification" onFinish={handleConfirmSignup}>
             <Form.Item>
               <Alert
@@ -232,7 +221,7 @@ const Signup: React.FC<SignupTypes> = (props) => {
               </Button>
             </Form.Item>
           </Form>
-        </TabPane>
+        </TabPane> */}
       </Tabs>
     </Modal>
   );
@@ -246,7 +235,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       setUserType,
-      setIsAuth
+      setIsAuth,
     },
     dispatch
   );

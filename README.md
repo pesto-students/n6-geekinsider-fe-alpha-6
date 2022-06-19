@@ -6,44 +6,45 @@ Geekinsider is a recruiter-focused job website, lets candidates create their own
 
 Finding the right talent that fits the role that a company is seeking for has always been a challenge. Recruiters have to go through multiple profiles before finding and approaching a potential candidate. Identifying a candidate as a potential fit for the role requires the recruiter to look at different profiles of the candidate in different platforms.
 GeekInsider is a platform that helps to connect companies with the right talent in the IT sector. It aims to provide the recruiters, representing the companies, with a pool of talent along with maximum insights collected from multiple platforms.
-It is also a platform where IT professionals can showcase their work, search for the job that suits them best and apply for it. 
+It is also a platform where IT professionals can showcase their work, search for the job that suits them best and apply for it.
 
 ## Getting Started
-* [URL](https://geekinsider.click)
-* Recruiter credentials
-    ```
-    Email: itvxqzahzcuhxrhete@uivvn.net
-    Password: pass@123
-    ```
-* Candidate credentials
-    ```
-    Email: rsxnmdulrbknjrlhum@rffff.net
-    Password: pass@123
-    ```
+
+- [URL](https://saxenaa218.github.io/geekinsider-ui/)
+- Recruiter credentials
+  ```
+  Email: itvxqzahzcuhxrhete@uivvn.net
+  Password: pass@123
+  ```
+- Candidate credentials
+  ```
+  Email: rsxnmdulrbknjrlhum@rffff.net
+  Password: pass@123
+  ```
 
 ## Description
 
-* [PRD](https://drive.google.com/file/d/1KFyDS5alj3-eoNI8aNCxppcBr2byIDUl/view?usp=sharing)
-* [HLD](https://drive.google.com/file/d/1cwNigCjESyGc8JDVfxXS2RvVDf0UvXO3/view?usp=sharing)
-* [Mockup](https://drive.google.com/file/d/1s7Szy7HjG09NQYCv3CSvPnCNsvrqNRMT/view?usp=sharing)
+- [PRD](https://drive.google.com/file/d/1KFyDS5alj3-eoNI8aNCxppcBr2byIDUl/view?usp=sharing)
+- [HLD](https://drive.google.com/file/d/1cwNigCjESyGc8JDVfxXS2RvVDf0UvXO3/view?usp=sharing)
+- [Mockup](https://drive.google.com/file/d/1s7Szy7HjG09NQYCv3CSvPnCNsvrqNRMT/view?usp=sharing)
 
 ### Installing
 
-* Fork this repo.
+- Fork this repo.
   [repo](https://github.com/pesto-students/n6-geekinsider-fe-alpha-6)
-* Clone the repo using
+- Clone the repo using
   ```
     git clone <link to forked repo>
   ```
-* Change directory
+- Change directory
   ```
     cd <Folder Name>
   ```
-* Install dependencies
+- Install dependencies
   ```
     npm install
   ```
-* Run app
+- Run app
   ```
     npm start
   ```
@@ -58,4 +59,4 @@ Abhishek Saxena
 
 ## Acknowledgments
 
-* [antd](https://github.com/ant-design/ant-design)
+- [antd](https://github.com/ant-design/ant-design)

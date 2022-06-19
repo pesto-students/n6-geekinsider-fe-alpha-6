@@ -1,9 +1,7 @@
-import { Auth } from "aws-amplify";
-
-let baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:3005";
+let baseUrl = "https://geekinsider.herokuapp.com";
 
 if (process.env.NODE_ENV === "production") {
-  baseUrl = "https://api.geekinsider.click";
+  baseUrl = "https://geekinsider.herokuapp.com";
 }
 
 const getHeader = () => {

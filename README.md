@@ -10,16 +10,16 @@ It is also a platform where IT professionals can showcase their work, search for
 
 ## Getting Started
 
-- [URL](https://saxenaa218.github.io/geekinsider-ui/)
+- [URL](https://pesto-students.github.io/n6-geekinsider-fe-alpha-6/)
 - Recruiter credentials
   ```
-  Email: itvxqzahzcuhxrhete@uivvn.net
-  Password: pass@123
+  Email: recruiter1@gmail.com
+  Password: recruiter
   ```
 - Candidate credentials
   ```
-  Email: rsxnmdulrbknjrlhum@rffff.net
-  Password: pass@123
+  Email: candidate@gmail.com
+  Password: candidate
   ```
 
 ## Description

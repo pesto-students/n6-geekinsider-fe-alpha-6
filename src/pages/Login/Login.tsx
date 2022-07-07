@@ -78,8 +78,8 @@ const Login: React.FC<LoginPropsTypes> = (props) => {
       <Form
         onFinish={handleCandidateSubmit}
         initialValues={{
-          username: "itvxqzahzcuhxrhete@uivvn.net",
-          password: "pass@123",
+          username: "recruiter1@gmail.com",
+          password: "recruiter",
         }}
       >
         <Form.Item

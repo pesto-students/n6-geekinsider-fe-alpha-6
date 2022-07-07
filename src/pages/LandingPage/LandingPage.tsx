@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
-import { Auth } from "aws-amplify";
 
 import CandidateLanding from "../Candidate/CandidateLandingPage";
 import RecruiterLanding from "../Recruiter/LandingPage";
 import Loader from "../../components/Loader";
-import { setIsAuth, setUserType, StateTypes } from "../../redux";
+import { setUserType, StateTypes } from "../../redux";
 import { UserTypeTypes } from "../../routes";
 import { LandingPagePropTypes } from "./types";
 import { getUser, isAuthenticated } from "../../utils";

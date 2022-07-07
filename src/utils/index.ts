@@ -1,5 +1,4 @@
 import * as CSS from "csstype";
-import { Auth } from "aws-amplify";
 
 export const industryTypes = [
   "Information Technology & Services",

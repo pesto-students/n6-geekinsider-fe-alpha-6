@@ -1,0 +1,55 @@
+@import 'antd/dist/antd.css';
+
+.tags {
+  width: fit-content;
+  background-color: lightgrey;
+  border-radius: 10px;
+  padding: 2px 6px;
+  margin: 0 3px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.loader--global {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: "10px";
+  z-index: 999;
+}
+
+.ant-card {
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+}
+
+.active-card {
+  background-color: #dcdcdc;
+}
+
+.app {
+  margin: auto;
+  max-width: 1000px;
+  padding: 0 0 10px 0;
+}
+
+.icon {
+  height: 15px;
+  width: 15px;
+  position: relative;
+  top: 2px;
+}

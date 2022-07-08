@@ -1,0 +1,50 @@
+.single-widget {
+    width: 305px;
+    flex-wrap: wrap;
+    .ant-card {
+        margin: 5px;
+    }
+    .single-widget__each-widget {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 15px;
+        span {
+            flex-shrink: 0;
+        }
+        .right-section {
+            width: 75%;
+            h3 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+    .single-widget__footer-section {
+        margin: 15px 0 0 0;
+        display: flex;
+        justify-content: space-around;
+        .icon {
+            width: 17px;
+            height: 17px;
+            top: 3px;
+            position: relative;
+            margin-right: 5px;
+        }
+        .numbers-applied {
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+        }
+        div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    .single-widget__tag-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px 0;
+    }
+}

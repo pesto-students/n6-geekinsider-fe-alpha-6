@@ -1,8 +1,4 @@
-let baseUrl = "https://geekinsider.herokuapp.com";
-
-if (process.env.NODE_ENV === "production") {
-  baseUrl = "https://geekinsider.herokuapp.com";
-}
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const getHeader = () => {
   return {
